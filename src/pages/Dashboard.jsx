@@ -11,8 +11,7 @@ const Dashboard = () => {
     name: 'Jarvis',
   })
 
-  const handleToogle = (e) => {
-    e.preventDefault()
+  const handleToogle = () => {
     setToggleStatus(!toggleStatus)
   }
 

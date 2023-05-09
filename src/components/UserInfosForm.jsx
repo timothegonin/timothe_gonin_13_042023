@@ -1,13 +1,19 @@
 import React from 'react'
 
 const UserInfosForm = ({ userInfos, handleToogle, setUserInfos }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setUserInfos({ firstName: userInfos.firstName, name: userInfos.name })
+    handleToogle()
+  }
+
   const handleInput = (e) => {
     e.preventDefault()
     setUserInfos({ firstName: '', name: '' })
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
         <input
           type="text"
@@ -29,7 +35,7 @@ const UserInfosForm = ({ userInfos, handleToogle, setUserInfos }) => {
         />
       </div>
       <div>
-        <button onClick={(e) => handleToogle(e)}>Save</button>
+        <button>Save</button>
         <button onClick={(e) => handleInput(e)}>Cancel</button>
       </div>
     </form>

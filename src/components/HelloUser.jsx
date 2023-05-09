@@ -8,7 +8,7 @@ const HelloUser = ({ userInfos, handleToogle }) => {
         <br />
         {`${userInfos.firstName} ${userInfos.name}!`}
       </h1>
-      <button className="edit-button" onClick={(e) => handleToogle(e)}>
+      <button className="edit-button" onClick={handleToogle}>
         Edit Name
       </button>
     </React.Fragment>
