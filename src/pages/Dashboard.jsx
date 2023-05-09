@@ -22,7 +22,11 @@ const Dashboard = () => {
         {!toggleStatus ? (
           <HelloUser handleToogle={handleToogle} userInfos={userInfos} />
         ) : (
-          <UserInfosForm handleToogle={handleToogle} userInfos={userInfos} />
+          <UserInfosForm
+            handleToogle={handleToogle}
+            userInfos={userInfos}
+            setUserInfos={setUserInfos}
+          />
         )}
       </div>
       <h2 className="sr-only">Accounts</h2>
