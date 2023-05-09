@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const SignIn = () => {
   return (
     <main className="main bg-light">
@@ -17,7 +19,9 @@ const SignIn = () => {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <button className="sign-in-button">Sign In</button>
+          <Link to="/dashboard">
+            <button className="sign-in-button">Sign In</button>
+          </Link>
         </form>
       </section>
     </main>
