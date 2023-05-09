@@ -1,15 +1,29 @@
+import { useState } from 'react'
+import HelloUser from '../components/HelloUser'
+import UserInfosForm from '../components/UserInfosForm'
 import Account from '../components/Account'
 
 const Dashboard = () => {
+  const [toggleStatus, setToggleStatus] = useState(false)
+
+  const [userInfos, setUserInfos] = useState({
+    firstName: 'Tony',
+    name: 'Jarvis',
+  })
+
+  const handleToogle = (e) => {
+    e.preventDefault()
+    setToggleStatus(!toggleStatus)
+  }
+
   return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>
-          Welcome back
-          <br />
-          Tony Jarvis!
-        </h1>
-        <button className="edit-button">Edit Name</button>
+        {!toggleStatus ? (
+          <HelloUser handleToogle={handleToogle} userInfos={userInfos} />
+        ) : (
+          <UserInfosForm handleToogle={handleToogle} userInfos={userInfos} />
+        )}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <Account
