@@ -26,7 +26,10 @@ const Dashboard = () => {
 
   return (
     <main className="main bg-dark">
-      <div className="header">{userView}</div>
+      <div className="header">
+        <h1>Welcome back</h1>
+        {userView}
+      </div>
       <h2 className="sr-only">Accounts</h2>
       <Account
         title="Argent Bank Checking (x8349)"
