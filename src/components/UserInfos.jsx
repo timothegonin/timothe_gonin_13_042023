@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HelloUser = ({ userInfos, handleToogle }) => {
+const UserInfos = ({ userInfos, handleToogle }) => {
   return (
     <React.Fragment>
       <h1>
@@ -15,4 +15,4 @@ const HelloUser = ({ userInfos, handleToogle }) => {
   )
 }
 
-export default HelloUser
+export default UserInfos

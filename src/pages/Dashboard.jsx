@@ -1,33 +1,32 @@
 import { useState } from 'react'
-import HelloUser from '../components/HelloUser'
+import UserInfos from '../components/UserInfos'
 import UserInfosForm from '../components/UserInfosForm'
 import Account from '../components/Account'
 
 const Dashboard = () => {
-  const [toggleStatus, setToggleStatus] = useState(false)
-
   const [userInfos, setUserInfos] = useState({
     firstName: 'Tony',
     name: 'Jarvis',
   })
 
+  const [toggleStatus, setToggleStatus] = useState(false)
   const handleToogle = () => {
     setToggleStatus(!toggleStatus)
   }
 
+  const userView = !toggleStatus ? (
+    <UserInfos handleToogle={handleToogle} userInfos={userInfos} />
+  ) : (
+    <UserInfosForm
+      handleToogle={handleToogle}
+      userInfos={userInfos}
+      setUserInfos={setUserInfos}
+    />
+  )
+
   return (
     <main className="main bg-dark">
-      <div className="header">
-        {!toggleStatus ? (
-          <HelloUser handleToogle={handleToogle} userInfos={userInfos} />
-        ) : (
-          <UserInfosForm
-            handleToogle={handleToogle}
-            userInfos={userInfos}
-            setUserInfos={setUserInfos}
-          />
-        )}
-      </div>
+      <div className="header">{userView}</div>
       <h2 className="sr-only">Accounts</h2>
       <Account
         title="Argent Bank Checking (x8349)"
