@@ -34,12 +34,32 @@ const ButtonsWrapper = styled.div`
     width: 101px;
     height: 35px;
     border-radius: 2.5px;
-    border: 1.5px solid #a9acea;
+    border: 1.5px solid #5256ec;
     background-color: #fff;
     color: #5256ec;
     font-weight: bold;
     font-size: 12px;
     padding: 10px;
+    position: relative;
+    z-index: 1;
+    &:hover {
+      color: #fff;
+      &::after {
+        opacity: 1;
+      }
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: #5256ec;
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 250ms;
+    }
   }
 `
 

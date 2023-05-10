@@ -18,6 +18,26 @@ const Button = styled.button`
   font-weight: bold;
   font-size: 12px;
   padding: 10px;
+  position: relative;
+  z-index: 1;
+  &:hover {
+    color: #5256ec;
+    &::after {
+      opacity: 1;
+    }
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 250ms;
+  }
 `
 
 /* 
