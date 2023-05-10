@@ -18,6 +18,9 @@ const InputWrapper = styled.div`
     border-radius: 2.5px;
     color: #b8c4ce;
     width: 167px;
+    &::placeholder {
+      color: #b8c4ce;
+    }
   }
 `
 
@@ -27,6 +30,7 @@ const ButtonsWrapper = styled.div`
   justify-content: center;
   gap: 13px;
   button {
+    cursor: pointer;
     width: 101px;
     height: 35px;
     border-radius: 2.5px;
