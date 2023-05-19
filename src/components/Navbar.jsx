@@ -1,7 +1,29 @@
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/argentBankLogo.png'
 
 const Navbar = () => {
+  const [loggedIn, setLoggedIn] = useState(true)
+
+  const navBarIcon = !loggedIn ? (
+    <Link className="main-nav-item" to="/signIn">
+      <i className="fa fa-user-circle"></i> Sign In{' '}
+    </Link>
+  ) : (
+    <React.Fragment>
+      <Link class="main-nav-item">
+        <i class="fa fa-user-circle"></i>
+        Tony
+      </Link>
+      <Link class="main-nav-item">
+        <button>
+          <i class="fa fa-sign-out"></i>
+          Sign Out
+        </button>
+      </Link>
+    </React.Fragment>
+  )
+
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="/">
@@ -12,11 +34,7 @@ const Navbar = () => {
         />
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
-      <div>
-        <Link className="main-nav-item" to="/signIn">
-          <i className="fa fa-user-circle"></i> Sign In{' '}
-        </Link>
-      </div>
+      <div>{navBarIcon}</div>
     </nav>
   )
 }
