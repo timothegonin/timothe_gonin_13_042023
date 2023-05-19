@@ -25,7 +25,7 @@ const Dashboard = () => {
   )
 
   return (
-    <main className="main bg-dark">
+    <main className="main bg-light">
       <div className="header">
         <h1>Welcome back</h1>
         {userView}

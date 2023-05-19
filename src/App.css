@@ -272,7 +272,7 @@ body {
 }
 
 .header {
-  color: #fff;
+  color: #222;
   margin-bottom: 2rem;
 }
 
@@ -284,8 +284,8 @@ body {
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border: 2px solid #00bc77;
-  background-color: #00bc77;
+  border: 1px solid #6458f5;
+  background-color: #6458f5;
   color: #fff;
 }
 
