@@ -11,15 +11,13 @@ const Navbar = () => {
     </Link>
   ) : (
     <React.Fragment>
-      <Link class="main-nav-item">
+      <Link class="main-nav-item" to="/dashboard">
         <i class="fa fa-user-circle"></i>
         Tony
       </Link>
-      <Link class="main-nav-item">
-        <button>
-          <i class="fa fa-sign-out"></i>
-          Sign Out
-        </button>
+      <Link class="main-nav-item" to="/signIn">
+        <i class="fa fa-sign-out"></i>
+        Sign Out
       </Link>
     </React.Fragment>
   )

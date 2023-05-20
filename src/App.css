@@ -59,6 +59,10 @@ body {
   text-decoration: none;
   margin-right: 0.5rem;
 }
+.main-nav-item i {
+  margin-left: 0.8rem;
+  margin-right: 0.4rem;
+}
 
 .main-nav-item:hover {
   text-decoration: underline;
