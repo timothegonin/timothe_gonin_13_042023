@@ -18,6 +18,7 @@ const Button = styled.button`
   font-weight: bold;
   font-size: 12px;
   padding: 10px;
+  margin-top: 1.2rem;
   position: relative;
   z-index: 1;
   &:hover {

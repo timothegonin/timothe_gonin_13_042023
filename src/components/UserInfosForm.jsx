@@ -6,6 +6,10 @@ import styled from 'styled-components'
   │ STYLES                                                                  │
   └─────────────────────────────────────────────────────────────────────────┘
  */
+const Form = styled.form`
+  margin-top: 1.2rem;
+`
+
 const InputWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -81,7 +85,7 @@ const UserInfosForm = ({ userInfos, handleToogle, setUserInfos }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <InputWrapper>
         <input
           type="text"
@@ -107,7 +111,7 @@ const UserInfosForm = ({ userInfos, handleToogle, setUserInfos }) => {
         <button>Save</button>
         <button onClick={(e) => handleInput(e)}>Cancel</button>
       </ButtonsWrapper>
-    </form>
+    </Form>
   )
 }
 
