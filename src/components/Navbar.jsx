@@ -15,7 +15,7 @@ const Navbar = () => {
         <i className="fa fa-user-circle"></i>
         Tony
       </Link>
-      <Link className="main-nav-item" to="/login">
+      <Link className="main-nav-item" to="/">
         <i className="fa fa-sign-out"></i>
         Sign Out
       </Link>
