@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const SignIn = () => {
+const Login = () => {
   return (
     <main className="main bg-light">
       <section className="sign-in-content">
@@ -28,4 +28,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default Login
