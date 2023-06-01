@@ -11,7 +11,7 @@ const Navbar = () => {
     </Link>
   ) : (
     <React.Fragment>
-      <Link className="main-nav-item" to="/dashboard">
+      <Link className="main-nav-item" to="/profile">
         <i className="fa fa-user-circle"></i>
         Tony
       </Link>
