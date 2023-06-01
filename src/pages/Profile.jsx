@@ -3,7 +3,7 @@ import UserInfos from '../components/UserInfos'
 import UserInfosForm from '../components/UserInfosForm'
 import Account from '../components/Account'
 
-const Dashboard = () => {
+const Profile = () => {
   const [userInfos, setUserInfos] = useState({
     firstName: 'Tony',
     name: 'Jarvis',
@@ -52,4 +52,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Profile

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const SignIn = () => {
+const Login = () => {
   return (
     <main className="main bg-light">
       <section className="sign-in-content">
@@ -19,7 +19,7 @@ const SignIn = () => {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <Link to="/dashboard">
+          <Link to="/profile">
             <button className="sign-in-button">Sign In</button>
           </Link>
         </form>
@@ -28,4 +28,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default Login

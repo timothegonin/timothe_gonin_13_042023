@@ -6,16 +6,16 @@ const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(true)
 
   const navBarIcon = !loggedIn ? (
-    <Link className="main-nav-item" to="/signIn">
+    <Link className="main-nav-item" to="/login">
       <i className="fa fa-user-circle"></i> Sign In{' '}
     </Link>
   ) : (
     <React.Fragment>
-      <Link className="main-nav-item" to="/dashboard">
+      <Link className="main-nav-item" to="/profile">
         <i className="fa fa-user-circle"></i>
         Tony
       </Link>
-      <Link className="main-nav-item" to="/signIn">
+      <Link className="main-nav-item" to="/">
         <i className="fa fa-sign-out"></i>
         Sign Out
       </Link>
