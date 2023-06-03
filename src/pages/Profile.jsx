@@ -2,6 +2,7 @@ import { useState } from 'react'
 import UserInfos from '../components/UserInfos'
 import UserInfosForm from '../components/UserInfosForm'
 import Account from '../components/Account'
+import { useSelector } from 'react-redux'
 
 const Profile = () => {
   const [userInfos, setUserInfos] = useState({
@@ -9,19 +10,26 @@ const Profile = () => {
     name: 'Jarvis',
   })
 
-  const [toggleStatus, setToggleStatus] = useState(false)
-  const handleToogle = () => {
-    setToggleStatus(!toggleStatus)
-  }
+  const { isOpen } = useSelector((store) => store.userInfosSetter)
 
-  const userView = !toggleStatus ? (
-    <UserInfos handleToogle={handleToogle} userInfos={userInfos} />
+  // const [toggleStatus, setToggleStatus] = useState(false)
+  // const handleToogle = () => {
+  //   setToggleStatus(!toggleStatus)
+  // }
+
+  // const userView = !toggleStatus ? (
+  //   <UserInfos handleToogle={handleToogle} userInfos={userInfos} />
+  // ) : (
+  //   <UserInfosForm
+  //     handleToogle={handleToogle}
+  //     userInfos={userInfos}
+  //     setUserInfos={setUserInfos}
+  //   />
+  // )
+  const userView = !isOpen ? (
+    <UserInfos userInfos={userInfos} />
   ) : (
-    <UserInfosForm
-      handleToogle={handleToogle}
-      userInfos={userInfos}
-      setUserInfos={setUserInfos}
-    />
+    <UserInfosForm userInfos={userInfos} setUserInfos={setUserInfos} />
   )
 
   return (

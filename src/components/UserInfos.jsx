@@ -1,5 +1,7 @@
 import React from 'react'
 import { styled } from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { open } from '../features/userInfosForm/userInfosFormSlice'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -46,11 +48,12 @@ const Button = styled.button`
   │ JSX                                                                     │
   └─────────────────────────────────────────────────────────────────────────┘
  */
-const UserInfos = ({ userInfos, handleToogle }) => {
+const UserInfos = ({ userInfos }) => {
+  const dispatch = useDispatch()
   return (
     <React.Fragment>
       <h2>{`${userInfos.firstName} ${userInfos.name}!`}</h2>
-      <Button className="edit-button" onClick={handleToogle}>
+      <Button className="edit-button" onClick={() => dispatch(open())}>
         Edit Name
       </Button>
     </React.Fragment>

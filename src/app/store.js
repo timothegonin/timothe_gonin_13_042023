@@ -1,6 +1,8 @@
-// import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit'
+import userInfosFormSlice from '../features/userInfosForm/userInfosFormSlice'
 
-// export const store = configureStore({
-//   reducer: {
-//   },
-// });
+export const store = configureStore({
+  reducer: {
+    userInfosSetter: userInfosFormSlice,
+  },
+})
