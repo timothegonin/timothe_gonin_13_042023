@@ -50,6 +50,7 @@ const Button = styled.button`
  */
 const UserInfos = ({ userInfos }) => {
   const dispatch = useDispatch()
+
   return (
     <React.Fragment>
       <h2>{`${userInfos.firstName} ${userInfos.name}!`}</h2>

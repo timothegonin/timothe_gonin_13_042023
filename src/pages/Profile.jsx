@@ -12,20 +12,6 @@ const Profile = () => {
 
   const { isOpen } = useSelector((store) => store.userInfosSetter)
 
-  // const [toggleStatus, setToggleStatus] = useState(false)
-  // const handleToogle = () => {
-  //   setToggleStatus(!toggleStatus)
-  // }
-
-  // const userView = !toggleStatus ? (
-  //   <UserInfos handleToogle={handleToogle} userInfos={userInfos} />
-  // ) : (
-  //   <UserInfosForm
-  //     handleToogle={handleToogle}
-  //     userInfos={userInfos}
-  //     setUserInfos={setUserInfos}
-  //   />
-  // )
   const userView = !isOpen ? (
     <UserInfos userInfos={userInfos} />
   ) : (

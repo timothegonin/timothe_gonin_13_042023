@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
+import { close } from '../features/userInfosForm/userInfosFormSlice'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -72,11 +74,13 @@ const ButtonsWrapper = styled.div`
   │ JSX                                                                     │
   └─────────────────────────────────────────────────────────────────────────┘
  */
-const UserInfosForm = ({ userInfos, handleToogle, setUserInfos }) => {
+const UserInfosForm = ({ userInfos, setUserInfos }) => {
+  const dispatch = useDispatch()
+
   const handleSubmit = (e) => {
     e.preventDefault()
     setUserInfos({ firstName: userInfos.firstName, name: userInfos.name })
-    handleToogle()
+    dispatch(close())
   }
 
   const handleInput = (e) => {
