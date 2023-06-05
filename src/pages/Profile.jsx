@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux'
 
 const Profile = () => {
   const [userInfos, setUserInfos] = useState({
-    firstName: 'Tony',
-    name: 'Jarvis',
+    firstName: '',
+    name: '',
   })
 
   const { isOpen } = useSelector((store) => store.userInfosSetter)

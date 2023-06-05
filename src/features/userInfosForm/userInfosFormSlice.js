@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   isOpen: false,
+  userFirstName: 'Tony',
+  userLastName: 'Jarvis',
 }
 
 const userInfosFormSlice = createSlice({
@@ -14,9 +16,13 @@ const userInfosFormSlice = createSlice({
     close: (state) => {
       state.isOpen = false
     },
+    setUserInfos: (state, action) => {
+      state.userFirstName = action.payload.userFirstName
+      state.userLastName = action.payload.userLastName
+    },
   },
 })
 
-export const { open, close } = userInfosFormSlice.actions
+export const { open, close, setUserInfos } = userInfosFormSlice.actions
 
 export default userInfosFormSlice.reducer
