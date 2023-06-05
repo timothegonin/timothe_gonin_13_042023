@@ -17,8 +17,8 @@ const userInfosFormSlice = createSlice({
       state.isOpen = false
     },
     setUserInfos: (state, action) => {
-      state.userFirstName = action.payload.userFirstName
-      state.userLastName = action.payload.userLastName
+      state.userFirstName = action.payload.firstName
+      state.userLastName = action.payload.lastName
     },
   },
 })

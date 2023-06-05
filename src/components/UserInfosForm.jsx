@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
-import { close } from '../features/userInfosForm/userInfosFormSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  close,
+  setUserInfos,
+} from '../features/userInfosForm/userInfosFormSlice'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -74,18 +77,28 @@ const ButtonsWrapper = styled.div`
   │ JSX                                                                     │
   └─────────────────────────────────────────────────────────────────────────┘
  */
-const UserInfosForm = ({ userInfos, setUserInfos }) => {
+const UserInfosForm = () => {
+  const { userFirstName, userLastName } = useSelector(
+    (state) => state.userInfosSetter
+  )
   const dispatch = useDispatch()
+
+  const initialState = {
+    firstName: userFirstName,
+    lastName: userLastName,
+  }
+  const [newUserInfos, setNewUserInfos] = useState(initialState)
+  console.log(newUserInfos)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setUserInfos({ firstName: userInfos.firstName, name: userInfos.name })
+    dispatch(setUserInfos(newUserInfos))
     dispatch(close())
   }
 
   const handleInput = (e) => {
     e.preventDefault()
-    setUserInfos({ firstName: '', name: '' })
+    setNewUserInfos({ firstName: '', lastName: '' })
   }
 
   return (
@@ -94,19 +107,25 @@ const UserInfosForm = ({ userInfos, setUserInfos }) => {
         <input
           type="text"
           placeholder={
-            userInfos.firstName.length > 0 ? userInfos.firstName : 'Firstname'
+            newUserInfos.firstName.length > 0
+              ? newUserInfos.firstName
+              : 'Firstname'
           }
-          value={userInfos.firstName}
+          value={newUserInfos.firstName}
           onChange={(e) =>
-            setUserInfos({ ...userInfos, firstName: e.target.value })
+            setNewUserInfos({ ...newUserInfos, firstName: e.target.value })
           }
           required
         />
         <input
           type="text"
-          placeholder={userInfos.name.length > 0 ? userInfos.name : 'Name'}
-          value={userInfos.name}
-          onChange={(e) => setUserInfos({ ...userInfos, name: e.target.value })}
+          placeholder={
+            newUserInfos.lastName > 0 ? newUserInfos.lastName : 'Name'
+          }
+          value={newUserInfos.lastName}
+          onChange={(e) =>
+            setNewUserInfos({ ...newUserInfos, lastName: e.target.value })
+          }
           required
         />
       </InputWrapper>
