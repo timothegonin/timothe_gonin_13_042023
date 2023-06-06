@@ -123,7 +123,6 @@ const UserInfosView = () => {
     lastName: userLastName,
   }
   const [newUserInfos, setNewUserInfos] = useState(initialState)
-  console.log(newUserInfos)
 
   const handleSubmit = (e) => {
     e.preventDefault()
