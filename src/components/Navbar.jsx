@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/argentBankLogo.png'
 
 const Navbar = () => {
-  const [loggedIn, setLoggedIn] = useState(true)
+  const [loggedIn, setLoggedIn] = useState(false)
 
   const navBarIcon = !loggedIn ? (
     <Link className="main-nav-item" to="/login">
