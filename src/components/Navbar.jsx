@@ -6,13 +6,13 @@ import logo from '../assets/argentBankLogo.png'
 
 const Navbar = () => {
   const dispatch = useDispatch()
-  const { isAuthendicated } = useSelector((state) => state.auth)
+  const { isAuthenticated } = useSelector((state) => state.auth)
 
   const handleLogout = () => {
     dispatch(logout())
   }
 
-  const navBarIcon = !isAuthendicated ? (
+  const navBarIcon = !isAuthenticated ? (
     <Link className="main-nav-item" to="/login">
       <i className="fa fa-user-circle"></i> Sign In{' '}
     </Link>
