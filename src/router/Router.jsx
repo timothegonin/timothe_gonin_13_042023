@@ -5,24 +5,18 @@ import Login from '../pages/Login'
 import Error from '../pages/Error'
 import Profile from '../pages/Profile'
 
-const PrivateRoute = ({ path, element }) => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
-
-  return isAuthenticated ? (
-    element
-  ) : (
-    <Navigate to="/login" replace state={{ from: path }} />
-  )
-}
-
 const Router = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
+  console.log(isAuthenticated)
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route
         path="/profile"
-        element={<PrivateRoute path="/profile" element={<Profile />} />}
+        element={
+          isAuthenticated ? <Profile /> : <Navigate to="/login" replace />
+        }
       />
       <Route path="*" element={<Error />} />
     </Routes>
