@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../features/auth/authSlice'
 import logo from '../assets/argentBankLogo.png'
 
 const Navbar = () => {
-  const [loggedIn, setLoggedIn] = useState(true)
+  const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector((state) => state.auth)
 
-  const navBarIcon = !loggedIn ? (
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+
+  const navBarIcon = !isAuthenticated ? (
     <Link className="main-nav-item" to="/login">
       <i className="fa fa-user-circle"></i> Sign In{' '}
     </Link>
@@ -15,7 +22,7 @@ const Navbar = () => {
         <i className="fa fa-user-circle"></i>
         Tony
       </Link>
-      <Link className="main-nav-item" to="/">
+      <Link className="main-nav-item" to="/" onClick={handleLogout}>
         <i className="fa fa-sign-out"></i>
         Sign Out
       </Link>
