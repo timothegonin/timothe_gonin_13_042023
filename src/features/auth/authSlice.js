@@ -6,14 +6,18 @@ const storedIsAuthenticated = JSON.parse(
 
 const initialState = {
   isAuthenticated: storedIsAuthenticated,
+  email: '',
+  password: '',
 }
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: (state) => {
+    login: (state, { payload }) => {
       state.isAuthenticated = true
+      state.email = payload.emailEntry
+      state.password = payload.passwordEntry
       localStorage.setItem('isAuthenticated', 'true')
     },
     logout: (state) => {
