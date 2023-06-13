@@ -1,26 +1,16 @@
 import React, { useState } from 'react'
-// import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from './authSlice'
 
 const AuthView = () => {
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
 
   const [emailEntry, setEmail] = useState('')
   const [passwordEntry, setPasswordEntry] = useState('')
 
-  //TEMP CONNEXION WITHOUT BACKEND
-  // const handleLogin = (e) => {
-  //   e.preventDefault()
-  //   dispatch(login())
-  //   navigate('/profile')
-  // }
-
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(login({ emailEntry, passwordEntry }))
-    // navigate('/profile')
   }
 
   return (
@@ -48,7 +38,6 @@ const AuthView = () => {
         <label htmlFor="remember-me">Remember me</label>
       </div>
       <button className="sign-in-button" type="submit">
-        {/* <button onClick={handleLogin} className="sign-in-button" type="submit"> */}
         Sign In
       </button>
     </form>
