@@ -17,12 +17,12 @@ const AuthView = () => {
         'http://localhost:3001/api/v1/user/login',
         { email: emailEntry, password: passwordEntry }
       )
-      console.log(response.data)
+      // console.log(response.data)
+      response.data.body.token &&
+        dispatch(login({ token: response.data.body.token }))
     } catch (error) {
       console.error(error)
     }
-
-    dispatch(login({ emailEntry, passwordEntry }))
   }
 
   return (
