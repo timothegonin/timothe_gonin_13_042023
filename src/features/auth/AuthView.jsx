@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { login } from './authSlice'
+import axios from 'axios'
 
 const AuthView = () => {
   const dispatch = useDispatch()
@@ -8,8 +9,19 @@ const AuthView = () => {
   const [emailEntry, setEmail] = useState('')
   const [passwordEntry, setPasswordEntry] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/api/v1/user/login',
+        { email: emailEntry, password: passwordEntry }
+      )
+      console.log(response.data)
+    } catch (error) {
+      console.error(error)
+    }
+
     dispatch(login({ emailEntry, passwordEntry }))
   }
 
