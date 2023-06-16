@@ -1,4 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 const storedIsAuthenticated = JSON.parse(
   localStorage.getItem('isAuthenticated'),
@@ -10,6 +11,23 @@ const initialState = {
   isAuthenticatedToken: storedIsAuthenticated,
 }
 
+export const loginAsync = createAsyncThunk(
+  'auth/login',
+  async ({ email, password }) => {
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/api/v1/user/login',
+        { email, password }
+      )
+      const token = response.data.body.token
+      return token
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
+  }
+)
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -17,16 +35,22 @@ const authSlice = createSlice({
     login: (state, { payload }) => {
       state.isAuthenticated = true
       localStorage.setItem('isAuthenticated', 'true')
-      localStorage.setItem(
-        'isAuthenticatedToken',
-        JSON.stringify(payload.token)
-      )
+      localStorage.setItem('isAuthenticatedToken', JSON.stringify(payload))
     },
     logout: (state) => {
       state.isAuthenticated = false
       localStorage.setItem('isAuthenticated', 'false')
       localStorage.removeItem('isAuthenticatedToken')
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginAsync.fulfilled, (state, action) => {
+        state.isAuthenticatedToken = action.payload
+      })
+      .addCase(loginAsync.rejected, (state, action) => {
+        console.error(action.error)
+      })
   },
 })
 
