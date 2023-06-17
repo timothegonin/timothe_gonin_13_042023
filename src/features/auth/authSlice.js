@@ -44,13 +44,19 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(loginAsync.fulfilled, (state, action) => {
-        state.isAuthenticatedToken = action.payload
-      })
-      .addCase(loginAsync.rejected, (state, action) => {
-        console.error(action.error)
-      })
+    builder.addCase(loginAsync.pending, (state) => {
+      state.isLoading = true
+    })
+    builder.addCase(loginAsync.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.isAuthenticatedToken = action.payload
+      state.error = ''
+    })
+    builder.addCase(loginAsync.rejected, (state, action) => {
+      state.isLoading = false
+      state.isAuthenticatedToken = ''
+      state.error = action.error.message
+    })
   },
 })
 
