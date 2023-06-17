@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginAsync } from './authSlice'
-// import axios from 'axios'
 
 const AuthView = () => {
   const dispatch = useDispatch()
@@ -23,6 +22,7 @@ const AuthView = () => {
           id="username"
           value={emailEntry}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
       </div>
       <div className="input-wrapper">
@@ -32,6 +32,7 @@ const AuthView = () => {
           id="password"
           value={passwordEntry}
           onChange={(e) => setPasswordEntry(e.target.value)}
+          required
         />
       </div>
       <div className="input-remember">

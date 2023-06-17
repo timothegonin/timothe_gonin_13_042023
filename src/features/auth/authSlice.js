@@ -11,13 +11,12 @@ const initialState = {
   isAuthenticatedToken: !storedIsAuthenticated && '',
 }
 
+const url = 'http://localhost:3001/api/v1/user/login'
+
 export const loginAsync = createAsyncThunk(
-  'auth/login',
+  'auth/loginAsync',
   async ({ email, password }) => {
-    const { data } = await axios.post(
-      'http://localhost:3001/api/v1/user/login',
-      { email, password }
-    )
+    const { data } = await axios.post(url, { email, password })
     return data.body.token
   }
 )
@@ -56,6 +55,6 @@ const authSlice = createSlice({
   },
 })
 
-export const { login, logout } = authSlice.actions
+export const { logout } = authSlice.actions
 
 export default authSlice.reducer
