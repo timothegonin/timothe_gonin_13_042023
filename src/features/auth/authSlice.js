@@ -8,7 +8,7 @@ const storedIsAuthenticated = JSON.parse(
 
 const initialState = {
   isAuthenticated: storedIsAuthenticated,
-  isAuthenticatedToken: storedIsAuthenticated,
+  isAuthenticatedToken: !storedIsAuthenticated && '',
 }
 
 export const loginAsync = createAsyncThunk(
@@ -33,6 +33,7 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuthenticated = false
+      state.isAuthenticatedToken = ''
       localStorage.setItem('isAuthenticated', 'false')
       localStorage.removeItem('isAuthenticatedToken')
     },
@@ -44,6 +45,7 @@ const authSlice = createSlice({
     builder.addCase(loginAsync.fulfilled, (state, action) => {
       state.isLoading = false
       state.isAuthenticatedToken = action.payload
+      authSlice.caseReducers.login(state, action)
       state.error = ''
     })
     builder.addCase(loginAsync.rejected, (state, action) => {
