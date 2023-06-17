@@ -14,17 +14,11 @@ const initialState = {
 export const loginAsync = createAsyncThunk(
   'auth/login',
   async ({ email, password }) => {
-    try {
-      const response = await axios.post(
-        'http://localhost:3001/api/v1/user/login',
-        { email, password }
-      )
-      const token = response.data.body.token
-      return token
-    } catch (error) {
-      console.error(error)
-      throw error
-    }
+    const { data } = await axios.post(
+      'http://localhost:3001/api/v1/user/login',
+      { email, password }
+    )
+    return data.body.token
   }
 )
 
