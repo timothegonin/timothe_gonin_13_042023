@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { close, open, setUserInfos } from './userInfosFormSlice.js'
+import axios from 'axios'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -93,6 +94,10 @@ const UserInfosView = () => {
   const { isOpen, userFirstName, userLastName } = useSelector(
     (state) => state.userInfosSetter
   )
+  const { isAuthenticatedToken } = useSelector((state) => state.auth)
+
+  console.log(isAuthenticatedToken)
+
   const dispatch = useDispatch()
 
   const initialState = {
@@ -111,6 +116,29 @@ const UserInfosView = () => {
     e.preventDefault()
     setNewUserInfos({ firstName: '', lastName: '' })
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const headers = {
+          Authorization: `Bearer ${isAuthenticatedToken}`,
+        }
+
+        const response = await axios.post(
+          'http://localhost:3001/api/v1/user/profile',
+          {},
+          {
+            headers: headers,
+          }
+        )
+        console.log(response.data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   return (
     <React.Fragment>
