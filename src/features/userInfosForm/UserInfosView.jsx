@@ -124,14 +124,19 @@ const UserInfosView = () => {
           Authorization: `Bearer ${isAuthenticatedToken}`,
         }
 
-        const response = await axios.post(
+        const { data } = await axios.post(
           'http://localhost:3001/api/v1/user/profile',
           {},
           {
             headers: headers,
           }
         )
-        console.log(response.data)
+        dispatch(
+          setUserInfos({
+            firstName: data.body.firstName,
+            lastName: data.body.lastName,
+          })
+        )
       } catch (error) {
         console.error(error)
       }
