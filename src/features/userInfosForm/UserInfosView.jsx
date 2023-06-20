@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { close, open, setUserInfos } from './userInfosFormSlice.js'
+import { closeForm, openForm, setUserInfos } from './userInfosSlice.js'
 import axios from 'axios'
 
 /* 
@@ -91,8 +91,8 @@ const ButtonsWrapper = styled.div`
  */
 
 const UserInfosView = () => {
-  const { isOpen, userFirstName, userLastName } = useSelector(
-    (state) => state.userInfosSetter
+  const { formIsOpen, userFirstName, userLastName } = useSelector(
+    (state) => state.userInfos
   )
   const { isAuthenticatedToken } = useSelector((state) => state.auth)
 
@@ -109,7 +109,7 @@ const UserInfosView = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(setUserInfos(newUserInfos))
-    dispatch(close())
+    dispatch(closeForm())
   }
 
   const handleInput = (e) => {
@@ -147,10 +147,10 @@ const UserInfosView = () => {
 
   return (
     <React.Fragment>
-      {!isOpen ? (
+      {!formIsOpen ? (
         <React.Fragment>
           <h2>{`${userFirstName} ${userLastName}!`}</h2>
-          <Button className="edit-button" onClick={() => dispatch(open())}>
+          <Button className="edit-button" onClick={() => dispatch(openForm())}>
             Edit Name
           </Button>
         </React.Fragment>

@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  isOpen: false,
+  formIsOpen: false,
   userFirstName: '',
   userLastName: '',
 }
 
-const userInfosFormSlice = createSlice({
-  name: 'userInfosForm',
+const userInfosSlice = createSlice({
+  name: 'userInfos',
   initialState,
   reducers: {
-    open: (state) => {
-      state.isOpen = true
+    openForm: (state) => {
+      state.formIsOpen = true
     },
-    close: (state) => {
-      state.isOpen = false
+    closeForm: (state) => {
+      state.formIsOpen = false
     },
     setUserInfos: (state, action) => {
       state.userFirstName = action.payload.firstName
@@ -23,6 +23,6 @@ const userInfosFormSlice = createSlice({
   },
 })
 
-export const { open, close, setUserInfos } = userInfosFormSlice.actions
+export const { openForm, closeForm, setUserInfos } = userInfosSlice.actions
 
-export default userInfosFormSlice.reducer
+export default userInfosSlice.reducer
