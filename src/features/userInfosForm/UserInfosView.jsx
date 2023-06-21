@@ -7,7 +7,6 @@ import {
   setUserInfos,
   userInfosAsync,
 } from './userInfosSlice.js'
-// import axios from 'axios'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -99,9 +98,6 @@ const UserInfosView = () => {
   const { formIsOpen, userFirstName, userLastName } = useSelector(
     (state) => state.userInfos
   )
-  // const { isAuthenticatedToken } = useSelector((state) => state.auth)
-
-  // console.log(isAuthenticatedToken)
 
   const dispatch = useDispatch()
 

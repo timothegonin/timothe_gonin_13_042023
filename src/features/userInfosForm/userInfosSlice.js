@@ -21,8 +21,7 @@ export const userInfosAsync = createAsyncThunk(
       Authorization: `Bearer ${initialState.userToken}`,
     }
     const { data } = await axios.post(url, {}, { headers: headers })
-    console.log(data)
-    // return data
+    return data
   }
 )
 
@@ -47,15 +46,16 @@ const userInfosSlice = createSlice({
     })
     builder.addCase(userInfosAsync.fulfilled, (state, action) => {
       state.isLoading = false
-      // state.isAuthenticatedToken = action.payload
-      // authSlice.caseReducers.login(state, action)
-      // state.error = ''
+      state.userFirstName = action.payload.body.firstName
+      state.userLastName = action.payload.body.lastName
+      state.error = ''
     })
-    // builder.addCase(userInfosAsync.rejected, (state, action) => {
-    //   state.isLoading = false
-    //   state.isAuthenticatedToken = ''
-    //   state.error = action.error.message
-    // })
+    builder.addCase(userInfosAsync.rejected, (state, action) => {
+      state.isLoading = false
+      state.userFirstName = ''
+      state.userLastName = ''
+      state.error = action.error.message
+    })
   },
 })
 
