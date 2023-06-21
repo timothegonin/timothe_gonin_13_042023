@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { closeForm, openForm, setUserInfos } from './userInfosSlice.js'
-import axios from 'axios'
+import {
+  closeForm,
+  openForm,
+  setUserInfos,
+  userInfosAsync,
+} from './userInfosSlice.js'
+// import axios from 'axios'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -94,9 +99,9 @@ const UserInfosView = () => {
   const { formIsOpen, userFirstName, userLastName } = useSelector(
     (state) => state.userInfos
   )
-  const { isAuthenticatedToken } = useSelector((state) => state.auth)
+  // const { isAuthenticatedToken } = useSelector((state) => state.auth)
 
-  console.log(isAuthenticatedToken)
+  // console.log(isAuthenticatedToken)
 
   const dispatch = useDispatch()
 
@@ -118,31 +123,9 @@ const UserInfosView = () => {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const headers = {
-          Authorization: `Bearer ${isAuthenticatedToken}`,
-        }
-
-        const { data } = await axios.post(
-          'http://localhost:3001/api/v1/user/profile',
-          {},
-          {
-            headers: headers,
-          }
-        )
-        dispatch(
-          setUserInfos({
-            firstName: data.body.firstName,
-            lastName: data.body.lastName,
-          })
-        )
-      } catch (error) {
-        console.error(error)
-      }
+    if (localStorage.getItem('isAuthenticatedToken')) {
+      dispatch(userInfosAsync())
     }
-
-    fetchData()
   }, [])
 
   return (
