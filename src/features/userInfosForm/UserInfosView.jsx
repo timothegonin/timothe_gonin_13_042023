@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserInfos, userInfosAsync } from './userInfosSlice.js'
-import Loader from '../../components/Loader.jsx'
+import { setUserInfos } from './userInfosSlice.js'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -91,7 +90,7 @@ const ButtonsWrapper = styled.div`
  */
 
 const UserInfosView = () => {
-  const { isLoading, userFirstName, userLastName } = useSelector(
+  const { userFirstName, userLastName } = useSelector(
     (state) => state.userInfos
   )
 
@@ -115,15 +114,7 @@ const UserInfosView = () => {
     setNewUserInfos({ firstName: '', lastName: '' })
   }
 
-  useEffect(() => {
-    if (localStorage.getItem('isAuthenticatedToken')) {
-      dispatch(userInfosAsync())
-    }
-  }, [])
-
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <React.Fragment>
       {!formIsOpen ? (
         <React.Fragment>
