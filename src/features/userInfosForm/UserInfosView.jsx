@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  closeForm,
-  openForm,
-  setUserInfos,
-  userInfosAsync,
-} from './userInfosSlice.js'
+import { setUserInfos, userInfosAsync } from './userInfosSlice.js'
 import Loader from '../../components/Loader.jsx'
 
 /* 
@@ -96,7 +91,7 @@ const ButtonsWrapper = styled.div`
  */
 
 const UserInfosView = () => {
-  const { formIsOpen, isLoading, userFirstName, userLastName } = useSelector(
+  const { isLoading, userFirstName, userLastName } = useSelector(
     (state) => state.userInfos
   )
 
@@ -106,12 +101,13 @@ const UserInfosView = () => {
     firstName: userFirstName,
     lastName: userLastName,
   }
+  const [formIsOpen, setFormIsOpen] = useState(false)
   const [newUserInfos, setNewUserInfos] = useState(initialState)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(setUserInfos(newUserInfos))
-    dispatch(closeForm())
+    setFormIsOpen(false)
   }
 
   const handleInput = (e) => {
@@ -132,7 +128,7 @@ const UserInfosView = () => {
       {!formIsOpen ? (
         <React.Fragment>
           <h2>{`${userFirstName} ${userLastName}!`}</h2>
-          <Button className="edit-button" onClick={() => dispatch(openForm())}>
+          <Button className="edit-button" onClick={() => setFormIsOpen(true)}>
             Edit Name
           </Button>
         </React.Fragment>

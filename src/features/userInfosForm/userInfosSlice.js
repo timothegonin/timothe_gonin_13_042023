@@ -31,12 +31,6 @@ const userInfosSlice = createSlice({
   name: 'userInfos',
   initialState,
   reducers: {
-    openForm: (state) => {
-      state.formIsOpen = true
-    },
-    closeForm: (state) => {
-      state.formIsOpen = false
-    },
     setUserInfos: (state, action) => {
       state.userFirstName = action.payload.firstName
       state.userLastName = action.payload.lastName
