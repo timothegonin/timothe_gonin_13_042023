@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { close, open, setUserInfos } from './userInfosFormSlice.js'
+import { setUserInfos, userInfosAsync } from './userInfosSlice.js'
+import Loader from '../../components/Loader.jsx'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -90,21 +91,23 @@ const ButtonsWrapper = styled.div`
  */
 
 const UserInfosView = () => {
-  const { isOpen, userFirstName, userLastName } = useSelector(
-    (state) => state.userInfosSetter
+  const { isLoading, userFirstName, userLastName } = useSelector(
+    (state) => state.userInfos
   )
+
   const dispatch = useDispatch()
 
   const initialState = {
     firstName: userFirstName,
     lastName: userLastName,
   }
+  const [formIsOpen, setFormIsOpen] = useState(false)
   const [newUserInfos, setNewUserInfos] = useState(initialState)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(setUserInfos(newUserInfos))
-    dispatch(close())
+    setFormIsOpen(false)
   }
 
   const handleInput = (e) => {
@@ -112,12 +115,20 @@ const UserInfosView = () => {
     setNewUserInfos({ firstName: '', lastName: '' })
   }
 
-  return (
+  useEffect(() => {
+    if (localStorage.getItem('isAuthenticatedToken')) {
+      dispatch(userInfosAsync())
+    }
+  }, [])
+
+  return isLoading ? (
+    <Loader />
+  ) : (
     <React.Fragment>
-      {!isOpen ? (
+      {!formIsOpen ? (
         <React.Fragment>
           <h2>{`${userFirstName} ${userLastName}!`}</h2>
-          <Button className="edit-button" onClick={() => dispatch(open())}>
+          <Button className="edit-button" onClick={() => setFormIsOpen(true)}>
             Edit Name
           </Button>
         </React.Fragment>
