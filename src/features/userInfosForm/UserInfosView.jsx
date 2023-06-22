@@ -7,6 +7,7 @@ import {
   setUserInfos,
   userInfosAsync,
 } from './userInfosSlice.js'
+import Loader from '../../components/Loader.jsx'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -95,7 +96,7 @@ const ButtonsWrapper = styled.div`
  */
 
 const UserInfosView = () => {
-  const { formIsOpen, userFirstName, userLastName } = useSelector(
+  const { formIsOpen, isLoading, userFirstName, userLastName } = useSelector(
     (state) => state.userInfos
   )
 
@@ -124,7 +125,9 @@ const UserInfosView = () => {
     }
   }, [])
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <React.Fragment>
       {!formIsOpen ? (
         <React.Fragment>

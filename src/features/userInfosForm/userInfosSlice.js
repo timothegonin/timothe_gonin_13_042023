@@ -7,6 +7,8 @@ const tokenFromLocalStorage = JSON.parse(
 
 const initialState = {
   formIsOpen: false,
+  isLoading: false,
+  error: '',
   userToken: tokenFromLocalStorage,
   userFirstName: '',
   userLastName: '',
