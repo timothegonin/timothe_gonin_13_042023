@@ -11,12 +11,12 @@ const initialState = {
   isAuthenticatedToken: !storedIsAuthenticated && '',
 }
 
-const url = 'http://localhost:3001/api/v1/user/login'
+const loginUrl = 'http://localhost:3001/api/v1/user/login'
 
 export const loginAsync = createAsyncThunk(
   'auth/loginAsync',
   async ({ email, password }) => {
-    const { data } = await axios.post(url, { email, password })
+    const { data } = await axios.post(loginUrl, { email, password })
     return data.body.token
   }
 )

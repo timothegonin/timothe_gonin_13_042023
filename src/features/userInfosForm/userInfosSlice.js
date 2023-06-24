@@ -6,7 +6,6 @@ const tokenFromLocalStorage = JSON.parse(
 )
 
 const initialState = {
-  formIsOpen: false,
   isLoading: false,
   error: '',
   userToken: tokenFromLocalStorage,
@@ -14,7 +13,7 @@ const initialState = {
   userLastName: '',
 }
 
-const url = 'http://localhost:3001/api/v1/user/profile'
+const profileUrl = 'http://localhost:3001/api/v1/user/profile'
 
 export const userInfosAsync = createAsyncThunk(
   'userInfos/userInfosAsync',
@@ -22,7 +21,7 @@ export const userInfosAsync = createAsyncThunk(
     const headers = {
       Authorization: `Bearer ${initialState.userToken}`,
     }
-    const { data } = await axios.post(url, {}, { headers: headers })
+    const { data } = await axios.post(profileUrl, {}, { headers: headers })
     return data
   }
 )
@@ -55,6 +54,6 @@ const userInfosSlice = createSlice({
   },
 })
 
-export const { openForm, closeForm, setUserInfos } = userInfosSlice.actions
+export const { setUserInfos } = userInfosSlice.actions
 
 export default userInfosSlice.reducer
