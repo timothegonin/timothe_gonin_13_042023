@@ -1,30 +1,31 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+// import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+// import axios from 'axios'
 
-const tokenFromLocalStorage = JSON.parse(
-  localStorage.getItem('isAuthenticatedToken')
-)
+// const tokenFromLocalStorage = JSON.parse(
+//   localStorage.getItem('isAuthenticatedToken')
+// )
 
 const initialState = {
-  isLoading: false,
-  error: '',
-  userToken: tokenFromLocalStorage,
+  // isLoading: false,
+  // error: '',
+  // userToken: tokenFromLocalStorage,
   userFirstName: '',
   userLastName: '',
 }
 
-const profileUrl = 'http://localhost:3001/api/v1/user/profile'
+// const profileUrl = 'http://localhost:3001/api/v1/user/profile'
 
-export const userInfosAsync = createAsyncThunk(
-  'userInfos/userInfosAsync',
-  async () => {
-    const headers = {
-      Authorization: `Bearer ${initialState.userToken}`,
-    }
-    const { data } = await axios.post(profileUrl, {}, { headers: headers })
-    return data
-  }
-)
+// export const userInfosAsync = createAsyncThunk(
+//   'userInfos/userInfosAsync',
+//   async () => {
+//     const headers = {
+//       Authorization: `Bearer ${initialState.userToken}`,
+//     }
+//     const { data } = await axios.post(profileUrl, {}, { headers: headers })
+//     return data
+//   }
+// )
 
 const userInfosSlice = createSlice({
   name: 'userInfos',
@@ -35,23 +36,23 @@ const userInfosSlice = createSlice({
       state.userLastName = action.payload.lastName
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(userInfosAsync.pending, (state) => {
-      state.isLoading = true
-    })
-    builder.addCase(userInfosAsync.fulfilled, (state, action) => {
-      state.isLoading = false
-      state.userFirstName = action.payload.body.firstName
-      state.userLastName = action.payload.body.lastName
-      state.error = ''
-    })
-    builder.addCase(userInfosAsync.rejected, (state, action) => {
-      state.isLoading = false
-      state.userFirstName = ''
-      state.userLastName = ''
-      state.error = action.error.message
-    })
-  },
+  // extraReducers: (builder) => {
+  //   builder.addCase(userInfosAsync.pending, (state) => {
+  //     state.isLoading = true
+  //   })
+  //   builder.addCase(userInfosAsync.fulfilled, (state, action) => {
+  //     state.isLoading = false
+  //     state.userFirstName = action.payload.body.firstName
+  //     state.userLastName = action.payload.body.lastName
+  //     state.error = ''
+  //   })
+  //   builder.addCase(userInfosAsync.rejected, (state, action) => {
+  //     state.isLoading = false
+  //     state.userFirstName = ''
+  //     state.userLastName = ''
+  //     state.error = action.error.message
+  //   })
+  // },
 })
 
 export const { setUserInfos } = userInfosSlice.actions

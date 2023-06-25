@@ -90,9 +90,7 @@ const ButtonsWrapper = styled.div`
  */
 
 const UserInfosView = () => {
-  const { userFirstName, userLastName } = useSelector(
-    (state) => state.userInfos
-  )
+  const { userFirstName, userLastName } = useSelector((state) => state.auth)
 
   const dispatch = useDispatch()
 
