@@ -121,7 +121,13 @@ const UserInfosView = () => {
     <React.Fragment>
       {!formIsOpen ? (
         <React.Fragment>
-          <h2>{`${userFirstName} ${userLastName}!`}</h2>
+          <h2>{`${
+            newUserInfos.firstName === ''
+              ? userFirstName
+              : newUserInfos.firstName
+          } ${
+            newUserInfos.lastName === '' ? userLastName : newUserInfos.lastName
+          }!`}</h2>
           <Button className="edit-button" onClick={() => setFormIsOpen(true)}>
             Edit Name
           </Button>

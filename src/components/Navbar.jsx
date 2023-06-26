@@ -6,7 +6,8 @@ import logo from '../assets/argentBankLogo.png'
 
 const Navbar = () => {
   const dispatch = useDispatch()
-  const { isAuthenticated } = useSelector((state) => state.auth)
+  const { isAuthenticated, userFirstName } = useSelector((state) => state.auth)
+  const { newUserFirstName } = useSelector((state) => state.userInfos)
 
   const handleLogout = () => {
     dispatch(logout())
@@ -20,7 +21,7 @@ const Navbar = () => {
     <React.Fragment>
       <Link className="main-nav-item" to="/profile">
         <i className="fa fa-user-circle"></i>
-        Tony
+        {newUserFirstName === '' ? userFirstName : newUserFirstName}
       </Link>
       <Link className="main-nav-item" to="/" onClick={handleLogout}>
         <i className="fa fa-sign-out"></i>
