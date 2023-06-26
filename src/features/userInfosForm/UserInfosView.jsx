@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserInfos } from './userInfosSlice.js'
@@ -98,8 +98,13 @@ const UserInfosView = () => {
     firstName: userFirstName,
     lastName: userLastName,
   }
+
   const [formIsOpen, setFormIsOpen] = useState(false)
   const [newUserInfos, setNewUserInfos] = useState(initialState)
+
+  useEffect(() => {
+    setNewUserInfos({ firstName: userFirstName, lastName: userLastName })
+  }, [userFirstName, userLastName])
 
   const handleSubmit = (e) => {
     e.preventDefault()
