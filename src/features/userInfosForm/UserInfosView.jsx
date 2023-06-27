@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserInfos } from './userInfosSlice.js'
+import Loader from '../../components/Loader.jsx'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -90,7 +91,9 @@ const ButtonsWrapper = styled.div`
  */
 
 const UserInfosView = () => {
-  const { userFirstName, userLastName } = useSelector((state) => state.auth)
+  const { isLoading, userFirstName, userLastName } = useSelector(
+    (state) => state.auth
+  )
 
   const dispatch = useDispatch()
 
@@ -117,7 +120,9 @@ const UserInfosView = () => {
     setNewUserInfos({ firstName: '', lastName: '' })
   }
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <React.Fragment>
       {!formIsOpen ? (
         <React.Fragment>
