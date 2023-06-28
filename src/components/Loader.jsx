@@ -7,35 +7,20 @@ import styled, { keyframes } from 'styled-components'
  */
 
 /* 
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ JSX                                                                     │
-  └─────────────────────────────────────────────────────────────────────────┘
- */
-
-const Loader = () => {
-  return (
-    <SpinWrapper>
-      <Spin />
-    </SpinWrapper>
-  )
-}
-export default Loader
-
-/* 
-  ┌─────────────────────────────────────────────────────────────────────────┐
-  │ STYLES                                                                  │
-  └─────────────────────────────────────────────────────────────────────────┘
- */
+    ┌─────────────────────────────────────────────────────────────────────────┐
+    │ STYLES                                                                  │
+    └─────────────────────────────────────────────────────────────────────────┘
+   */
 
 const rotate = keyframes`
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-    transform: rotate(360deg);
-    }
-`
+      from {
+          transform: rotate(0deg);
+      }
+  
+      to {
+      transform: rotate(360deg);
+      }
+  `
 
 const Spin = styled.div`
   padding: 10px;
@@ -54,3 +39,18 @@ const SpinWrapper = styled.div`
   width: 100%;
   height: calc(100vh - 84px);
 `
+
+/* 
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │ JSX                                                                     │
+  └─────────────────────────────────────────────────────────────────────────┘
+ */
+
+const Loader = () => {
+  return (
+    <SpinWrapper>
+      <Spin />
+    </SpinWrapper>
+  )
+}
+export default Loader
