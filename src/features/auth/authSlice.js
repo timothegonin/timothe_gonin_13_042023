@@ -1,23 +1,40 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-const storedIsAuthenticated = JSON.parse(
-  localStorage.getItem('isAuthenticated'),
-  localStorage.getItem('isAuthenticatedToken')
-)
+const storedIsAuthenticated = sessionStorage.getItem('isAuthenticated')
+const tokenFromStorage = sessionStorage.getItem('isAuthenticatedToken')
 
 const initialState = {
-  isAuthenticated: storedIsAuthenticated,
-  isAuthenticatedToken: !storedIsAuthenticated && '',
+  isAuthenticated: storedIsAuthenticated
+    ? JSON.parse(storedIsAuthenticated)
+    : false,
+  isLoading: false,
+  error: '',
+  userToken: tokenFromStorage ? JSON.parse(tokenFromStorage) : '',
+  userFirstName: '',
+  userLastName: '',
 }
 
-const url = 'http://localhost:3001/api/v1/user/login'
+const loginUrl = 'http://localhost:3001/api/v1/user/login'
+const profileUrl = 'http://localhost:3001/api/v1/user/profile'
 
 export const loginAsync = createAsyncThunk(
   'auth/loginAsync',
   async ({ email, password }) => {
-    const { data } = await axios.post(url, { email, password })
+    const { data } = await axios.post(loginUrl, { email, password })
     return data.body.token
+  }
+)
+
+export const userInfosAsync = createAsyncThunk(
+  'auth/userInfosAsync',
+  async (_, { getState }) => {
+    const { userToken } = getState().auth
+    const headers = {
+      Authorization: `Bearer ${userToken}`,
+    }
+    const { data } = await axios.post(profileUrl, {}, { headers })
+    return data
   }
 )
 
@@ -27,31 +44,47 @@ const authSlice = createSlice({
   reducers: {
     login: (state, { payload }) => {
       state.isAuthenticated = true
-      localStorage.setItem('isAuthenticated', 'true')
-      localStorage.setItem('isAuthenticatedToken', JSON.stringify(payload))
+      sessionStorage.setItem('isAuthenticated', 'true')
+      sessionStorage.setItem('isAuthenticatedToken', JSON.stringify(payload))
     },
     logout: (state) => {
       state.isAuthenticated = false
-      state.isAuthenticatedToken = ''
-      localStorage.setItem('isAuthenticated', 'false')
-      localStorage.removeItem('isAuthenticatedToken')
+      state.userToken = ''
+      sessionStorage.setItem('isAuthenticated', 'false')
+      sessionStorage.setItem('isAuthenticatedToken')
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(loginAsync.pending, (state) => {
-      state.isLoading = true
-    })
-    builder.addCase(loginAsync.fulfilled, (state, action) => {
-      state.isLoading = false
-      state.isAuthenticatedToken = action.payload
-      authSlice.caseReducers.login(state, action)
-      state.error = ''
-    })
-    builder.addCase(loginAsync.rejected, (state, action) => {
-      state.isLoading = false
-      state.isAuthenticatedToken = ''
-      state.error = action.error.message
-    })
+    builder
+      .addCase(loginAsync.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(loginAsync.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.userToken = action.payload
+        authSlice.caseReducers.login(state, action)
+        state.error = ''
+      })
+      .addCase(loginAsync.rejected, (state, action) => {
+        state.isLoading = false
+        state.userToken = ''
+        state.error = action.error.message
+      })
+      .addCase(userInfosAsync.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(userInfosAsync.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.userFirstName = action.payload.body.firstName
+        state.userLastName = action.payload.body.lastName
+        state.error = ''
+      })
+      .addCase(userInfosAsync.rejected, (state, action) => {
+        state.isLoading = false
+        state.userFirstName = ''
+        state.userLastName = ''
+        state.error = action.error.message
+      })
   },
 })
 
