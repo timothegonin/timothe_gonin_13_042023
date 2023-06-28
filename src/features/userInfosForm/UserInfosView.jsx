@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { close, open, setUserInfos } from './userInfosFormSlice.js'
+import { setUserInfos } from './userInfosSlice.js'
+import Loader from '../../components/Loader.jsx'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -90,21 +91,28 @@ const ButtonsWrapper = styled.div`
  */
 
 const UserInfosView = () => {
-  const { isOpen, userFirstName, userLastName } = useSelector(
-    (state) => state.userInfosSetter
+  const { isLoading, userFirstName, userLastName } = useSelector(
+    (state) => state.auth
   )
+
   const dispatch = useDispatch()
 
   const initialState = {
     firstName: userFirstName,
     lastName: userLastName,
   }
+
+  const [formIsOpen, setFormIsOpen] = useState(false)
   const [newUserInfos, setNewUserInfos] = useState(initialState)
+
+  useEffect(() => {
+    setNewUserInfos({ firstName: userFirstName, lastName: userLastName })
+  }, [userFirstName, userLastName])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(setUserInfos(newUserInfos))
-    dispatch(close())
+    setFormIsOpen(false)
   }
 
   const handleInput = (e) => {
@@ -112,12 +120,20 @@ const UserInfosView = () => {
     setNewUserInfos({ firstName: '', lastName: '' })
   }
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <React.Fragment>
-      {!isOpen ? (
+      {!formIsOpen ? (
         <React.Fragment>
-          <h2>{`${userFirstName} ${userLastName}!`}</h2>
-          <Button className="edit-button" onClick={() => dispatch(open())}>
+          <h2>{`${
+            newUserInfos.firstName === ''
+              ? userFirstName
+              : newUserInfos.firstName
+          } ${
+            newUserInfos.lastName === '' ? userLastName : newUserInfos.lastName
+          }!`}</h2>
+          <Button className="edit-button" onClick={() => setFormIsOpen(true)}>
             Edit Name
           </Button>
         </React.Fragment>
