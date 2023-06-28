@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-const storedIsAuthenticated = localStorage.getItem('isAuthenticated')
-const tokenFromLocalStorage = localStorage.getItem('isAuthenticatedToken')
+const storedIsAuthenticated = sessionStorage.getItem('isAuthenticated')
+const tokenFromStorage = sessionStorage.getItem('isAuthenticatedToken')
 
 const initialState = {
   isAuthenticated: storedIsAuthenticated
@@ -10,7 +10,7 @@ const initialState = {
     : false,
   isLoading: false,
   error: '',
-  userToken: tokenFromLocalStorage ? JSON.parse(tokenFromLocalStorage) : '',
+  userToken: tokenFromStorage ? JSON.parse(tokenFromStorage) : '',
   userFirstName: '',
   userLastName: '',
 }
@@ -44,14 +44,14 @@ const authSlice = createSlice({
   reducers: {
     login: (state, { payload }) => {
       state.isAuthenticated = true
-      localStorage.setItem('isAuthenticated', 'true')
-      localStorage.setItem('isAuthenticatedToken', JSON.stringify(payload))
+      sessionStorage.setItem('isAuthenticated', 'true')
+      sessionStorage.setItem('isAuthenticatedToken', JSON.stringify(payload))
     },
     logout: (state) => {
       state.isAuthenticated = false
       state.userToken = ''
-      localStorage.setItem('isAuthenticated', 'false')
-      localStorage.removeItem('isAuthenticatedToken')
+      sessionStorage.setItem('isAuthenticated', 'false')
+      sessionStorage.setItem('isAuthenticatedToken')
     },
   },
   extraReducers: (builder) => {
