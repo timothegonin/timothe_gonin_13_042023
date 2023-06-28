@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../features/auth/authSlice'
 import logo from '../assets/argentBankLogo.png'
-import MiniLoader from './MiniLoader'
+import Loader from './Loader'
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -25,7 +25,7 @@ const Navbar = () => {
       <Link className="main-nav-item" to="/profile">
         <i className="fa fa-user-circle"></i>
         {isLoading ? (
-          <MiniLoader />
+          <Loader type="bounce" />
         ) : newUserFirstName === '' ? (
           userFirstName
         ) : (
