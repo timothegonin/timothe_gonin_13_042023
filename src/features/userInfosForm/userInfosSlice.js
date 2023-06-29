@@ -38,13 +38,9 @@ const userInfosSlice = createSlice({
   name: 'userInfos',
   initialState,
   reducers: {
-    setUserInfos: (state, action) => {
+    updateUserInfos: (state, action) => {
       state.newUserFirstName = action.payload.firstName
       state.newUserLastName = action.payload.lastName
-    },
-    updateUserInfos: (state, action) => {
-      state.newUserFirstName = action.payload
-      state.newUserLastName = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -54,9 +50,9 @@ const userInfosSlice = createSlice({
       })
       .addCase(newUserInfosAsync.fulfilled, (state, action) => {
         state.isLoading = false
-        console.log(action.payload.body)
         state.userFirstNameEntry = action.payload.body.firstName
         state.userLastNameEntry = action.payload.body.lastName
+        userInfosSlice.caseReducers.updateUserInfos(state, action)
         state.error = ''
       })
       .addCase(newUserInfosAsync.rejected, (state, action) => {
@@ -67,7 +63,5 @@ const userInfosSlice = createSlice({
       })
   },
 })
-
-export const { setUserInfos } = userInfosSlice.actions
 
 export default userInfosSlice.reducer
