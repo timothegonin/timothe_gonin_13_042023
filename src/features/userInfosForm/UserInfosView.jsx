@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserInfos } from './userInfosSlice.js'
+import { setUserInfos, newUserInfosAsync } from './userInfosSlice.js'
 import Loader from '../../components/Loader.jsx'
 
 /* 
@@ -112,6 +112,12 @@ const UserInfosView = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(setUserInfos(newUserInfos))
+    dispatch(
+      newUserInfosAsync({
+        firstName: newUserInfos.firstName,
+        lastName: newUserInfos.lastName,
+      })
+    )
     setFormIsOpen(false)
   }
 
