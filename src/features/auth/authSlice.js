@@ -11,6 +11,8 @@ const initialState = {
   isLoading: false,
   error: '',
   userToken: tokenFromStorage ? JSON.parse(tokenFromStorage) : '',
+  userFirstNameEntry: '',
+  userLastNameEntry: '',
   userFirstName: '',
   userLastName: '',
 }
@@ -38,20 +40,31 @@ export const userInfosAsync = createAsyncThunk(
   }
 )
 
+export const newUserInfosAsync = createAsyncThunk(
+  'auth/newUserInfosAsync',
+  async ({ firstName, lastName }, { getState }) => {
+    const { userToken } = getState().auth
+    const headers = {
+      Authorization: `Bearer ${userToken}`,
+    }
+    const { data } = await axios.put(
+      profileUrl,
+      { firstName, lastName },
+      { headers }
+    )
+    return data
+  }
+)
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login: (state, { payload }) => {
-      state.isAuthenticated = true
-      sessionStorage.setItem('isAuthenticated', 'true')
-      sessionStorage.setItem('isAuthenticatedToken', JSON.stringify(payload))
-    },
     logout: (state) => {
       state.isAuthenticated = false
       state.userToken = ''
       sessionStorage.setItem('isAuthenticated', 'false')
-      sessionStorage.setItem('isAuthenticatedToken')
+      sessionStorage.removeItem('isAuthenticatedToken')
     },
   },
   extraReducers: (builder) => {
@@ -62,7 +75,12 @@ const authSlice = createSlice({
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.isLoading = false
         state.userToken = action.payload
-        authSlice.caseReducers.login(state, action)
+        state.isAuthenticated = true
+        sessionStorage.setItem('isAuthenticated', 'true')
+        sessionStorage.setItem(
+          'isAuthenticatedToken',
+          JSON.stringify(action.payload)
+        )
         state.error = ''
       })
       .addCase(loginAsync.rejected, (state, action) => {
@@ -83,6 +101,23 @@ const authSlice = createSlice({
         state.isLoading = false
         state.userFirstName = ''
         state.userLastName = ''
+        state.error = action.error.message
+      })
+      .addCase(newUserInfosAsync.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(newUserInfosAsync.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.userFirstName = action.payload.body.firstName
+        state.userLastName = action.payload.body.lastName
+        state.userFirstNameEntry = ''
+        state.userLastNameEntry = ''
+        state.error = ''
+      })
+      .addCase(newUserInfosAsync.rejected, (state, action) => {
+        state.isLoading = false
+        state.userFirstNameEntry = ''
+        state.userLastNameEntry = ''
         state.error = action.error.message
       })
   },
