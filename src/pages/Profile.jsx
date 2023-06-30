@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { userInfosAsync } from '../features/auth/authSlice'
 
 import Account from '../components/Account'
-import UserInfosView from '../features/userInfosForm/UserInfosView'
+import UserInfos from '../components/UserInfos'
 
 const Profile = () => {
   const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const Profile = () => {
       <React.Fragment>
         <div className="header">
           <h1>Welcome back</h1>
-          <UserInfosView />
+          <UserInfos />
         </div>
         <div className="accounts-wrapper">
           <h2 className="sr-only">Accounts</h2>

@@ -10,7 +10,6 @@ const Navbar = () => {
   const { isAuthenticated, isLoading, userFirstName } = useSelector(
     (state) => state.auth
   )
-  const { newUserFirstName } = useSelector((state) => state.userInfos)
 
   const handleLogout = () => {
     dispatch(logout())
@@ -24,13 +23,7 @@ const Navbar = () => {
     <React.Fragment>
       <Link className="main-nav-item" to="/profile">
         <i className="fa fa-user-circle"></i>
-        {isLoading ? (
-          <Loader type="bounce" />
-        ) : newUserFirstName === '' ? (
-          userFirstName
-        ) : (
-          newUserFirstName
-        )}
+        {isLoading ? <Loader type="bounce" /> : userFirstName}
       </Link>
       <Link className="main-nav-item" to="/" onClick={handleLogout}>
         <i className="fa fa-sign-out"></i>

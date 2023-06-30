@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { newUserInfosAsync } from '../auth/authSlice'
-import Loader from '../../components/Loader.jsx'
+import { newUserInfosAsync } from '../features/auth/authSlice'
+import Loader from './Loader.jsx'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
