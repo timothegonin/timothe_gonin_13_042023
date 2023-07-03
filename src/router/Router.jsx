@@ -6,7 +6,7 @@ import Profile from '../pages/Profile'
 import Login from '../pages/Login'
 
 const Router = () => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
+  const { isAuthenticated } = useSelector((state) => state.user)
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />

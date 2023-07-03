@@ -21,7 +21,7 @@ const loginUrl = 'http://localhost:3001/api/v1/user/login'
 const profileUrl = 'http://localhost:3001/api/v1/user/profile'
 
 export const loginAsync = createAsyncThunk(
-  'auth/loginAsync',
+  'user/loginAsync',
   async ({ email, password }) => {
     const { data } = await axios.post(loginUrl, { email, password })
     return data.body.token
@@ -29,9 +29,9 @@ export const loginAsync = createAsyncThunk(
 )
 
 export const userInfosAsync = createAsyncThunk(
-  'auth/userInfosAsync',
+  'user/userInfosAsync',
   async (_, { getState }) => {
-    const { userToken } = getState().auth
+    const { userToken } = getState().user
     const headers = {
       Authorization: `Bearer ${userToken}`,
     }
@@ -41,9 +41,9 @@ export const userInfosAsync = createAsyncThunk(
 )
 
 export const newUserInfosAsync = createAsyncThunk(
-  'auth/newUserInfosAsync',
+  'user/newUserInfosAsync',
   async ({ firstName, lastName }, { getState }) => {
-    const { userToken } = getState().auth
+    const { userToken } = getState().user
     const headers = {
       Authorization: `Bearer ${userToken}`,
     }
@@ -56,8 +56,8 @@ export const newUserInfosAsync = createAsyncThunk(
   }
 )
 
-const authSlice = createSlice({
-  name: 'auth',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
     logout: (state) => {
@@ -123,6 +123,6 @@ const authSlice = createSlice({
   },
 })
 
-export const { logout } = authSlice.actions
+export const { logout } = userSlice.actions
 
-export default authSlice.reducer
+export default userSlice.reducer

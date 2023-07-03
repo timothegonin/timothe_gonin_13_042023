@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { userInfosAsync } from '../features/auth/authSlice'
+import { userInfosAsync } from '../features/user/userSlice'
 
 import Account from '../components/Account'
 import UserInfos from '../components/UserInfos'

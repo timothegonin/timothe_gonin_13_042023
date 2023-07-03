@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { newUserInfosAsync } from '../features/auth/authSlice'
+import { newUserInfosAsync } from '../features/user/userSlice'
 import Loader from './Loader.jsx'
 
 /* 
@@ -92,7 +92,7 @@ const ButtonsWrapper = styled.div`
 
 const UserInfos = () => {
   const { isLoading, userFirstName, userLastName } = useSelector(
-    (state) => state.auth
+    (state) => state.user
   )
 
   const dispatch = useDispatch()

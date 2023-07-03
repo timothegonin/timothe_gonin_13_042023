@@ -1,14 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../features/auth/authSlice'
+import { logout } from '../features/user/userSlice'
 import logo from '../assets/argentBankLogo.png'
 import Loader from './Loader'
 
 const Navbar = () => {
   const dispatch = useDispatch()
   const { isAuthenticated, isLoading, userFirstName } = useSelector(
-    (state) => state.auth
+    (state) => state.user
   )
 
   const handleLogout = () => {
