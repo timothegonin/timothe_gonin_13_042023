@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { loginAsync } from '../features/user/userSlice'
+import { loginUserAsync } from '../features/user/userSlice'
 
 const SignIn = () => {
   const dispatch = useDispatch()
@@ -10,7 +10,7 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(loginAsync({ email: emailEntry, password: passwordEntry }))
+    dispatch(loginUserAsync({ email: emailEntry, password: passwordEntry }))
   }
 
   return (

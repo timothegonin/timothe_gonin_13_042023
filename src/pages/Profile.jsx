@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { userInfosAsync } from '../features/user/userSlice'
+import { getUserInfosAsync } from '../features/user/userSlice'
 
 import Account from '../components/Account'
 import UserInfos from '../components/UserInfos'
@@ -9,7 +9,7 @@ const Profile = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(userInfosAsync())
+    dispatch(getUserInfosAsync())
   }, [])
 
   return (

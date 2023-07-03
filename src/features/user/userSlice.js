@@ -11,8 +11,6 @@ const initialState = {
   isLoading: false,
   error: '',
   userToken: tokenFromStorage ? JSON.parse(tokenFromStorage) : '',
-  userFirstNameEntry: '',
-  userLastNameEntry: '',
   userFirstName: '',
   userLastName: '',
 }
@@ -20,16 +18,16 @@ const initialState = {
 const loginUrl = 'http://localhost:3001/api/v1/user/login'
 const profileUrl = 'http://localhost:3001/api/v1/user/profile'
 
-export const loginAsync = createAsyncThunk(
-  'user/loginAsync',
+export const loginUserAsync = createAsyncThunk(
+  'user/loginUserAsync',
   async ({ email, password }) => {
     const { data } = await axios.post(loginUrl, { email, password })
     return data.body.token
   }
 )
 
-export const userInfosAsync = createAsyncThunk(
-  'user/userInfosAsync',
+export const getUserInfosAsync = createAsyncThunk(
+  'user/getUserInfosAsync',
   async (_, { getState }) => {
     const { userToken } = getState().user
     const headers = {
@@ -40,8 +38,8 @@ export const userInfosAsync = createAsyncThunk(
   }
 )
 
-export const newUserInfosAsync = createAsyncThunk(
-  'user/newUserInfosAsync',
+export const updateUserInfosAsync = createAsyncThunk(
+  'user/updateUserInfosAsync',
   async ({ firstName, lastName }, { getState }) => {
     const { userToken } = getState().user
     const headers = {
@@ -69,10 +67,10 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginAsync.pending, (state) => {
+      .addCase(loginUserAsync.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(loginAsync.fulfilled, (state, action) => {
+      .addCase(loginUserAsync.fulfilled, (state, action) => {
         state.isLoading = false
         state.userToken = action.payload
         state.isAuthenticated = true
@@ -83,41 +81,37 @@ const userSlice = createSlice({
         )
         state.error = ''
       })
-      .addCase(loginAsync.rejected, (state, action) => {
+      .addCase(loginUserAsync.rejected, (state, action) => {
         state.isLoading = false
         state.userToken = ''
         state.error = action.error.message
       })
-      .addCase(userInfosAsync.pending, (state) => {
+      .addCase(getUserInfosAsync.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(userInfosAsync.fulfilled, (state, action) => {
+      .addCase(getUserInfosAsync.fulfilled, (state, action) => {
         state.isLoading = false
         state.userFirstName = action.payload.body.firstName
         state.userLastName = action.payload.body.lastName
         state.error = ''
       })
-      .addCase(userInfosAsync.rejected, (state, action) => {
+      .addCase(getUserInfosAsync.rejected, (state, action) => {
         state.isLoading = false
         state.userFirstName = ''
         state.userLastName = ''
         state.error = action.error.message
       })
-      .addCase(newUserInfosAsync.pending, (state) => {
+      .addCase(updateUserInfosAsync.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(newUserInfosAsync.fulfilled, (state, action) => {
+      .addCase(updateUserInfosAsync.fulfilled, (state, action) => {
         state.isLoading = false
         state.userFirstName = action.payload.body.firstName
         state.userLastName = action.payload.body.lastName
-        state.userFirstNameEntry = ''
-        state.userLastNameEntry = ''
         state.error = ''
       })
-      .addCase(newUserInfosAsync.rejected, (state, action) => {
+      .addCase(updateUserInfosAsync.rejected, (state, action) => {
         state.isLoading = false
-        state.userFirstNameEntry = ''
-        state.userLastNameEntry = ''
         state.error = action.error.message
       })
   },

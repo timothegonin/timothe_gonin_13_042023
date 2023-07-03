@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { newUserInfosAsync } from '../features/user/userSlice'
+import { updateUserInfosAsync } from '../features/user/userSlice'
 import Loader from './Loader.jsx'
 
 /* 
@@ -112,7 +112,7 @@ const UserInfos = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(
-      newUserInfosAsync({
+      updateUserInfosAsync({
         firstName: newUserInfos.firstName,
         lastName: newUserInfos.lastName,
       })
