@@ -90,7 +90,7 @@ const ButtonsWrapper = styled.div`
   └─────────────────────────────────────────────────────────────────────────────┘
  */
 
-const UserInfosView = () => {
+const UserInfos = () => {
   const { isLoading, userFirstName, userLastName } = useSelector(
     (state) => state.auth
   )
@@ -176,4 +176,4 @@ const UserInfosView = () => {
     </React.Fragment>
   )
 }
-export default UserInfosView
+export default UserInfos

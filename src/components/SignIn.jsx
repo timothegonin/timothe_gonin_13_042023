@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { loginAsync } from './authSlice'
+import { loginAsync } from '../features/auth/authSlice'
 
-const AuthView = () => {
+const SignIn = () => {
   const dispatch = useDispatch()
 
   const [emailEntry, setEmail] = useState('')
@@ -46,4 +46,4 @@ const AuthView = () => {
   )
 }
 
-export default AuthView
+export default SignIn
