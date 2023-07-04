@@ -5,6 +5,10 @@ import { logout } from '../features/user/userSlice'
 import logo from '../assets/argentBankLogo.png'
 import Loader from './Loader'
 
+/**
+ * Component for rendering the navigation bar.
+ * @returns {JSX.Element} The rendered navigation bar component.
+ */
 const Navbar = () => {
   const dispatch = useDispatch()
   const { isAuthenticated, isLoading, userFirstName } = useSelector(
@@ -15,9 +19,13 @@ const Navbar = () => {
     dispatch(logout())
   }
 
+  /**
+   * Renders the appropriate navigation bar icons based on the user's authentication status.
+   * @returns {JSX.Element} The rendered navigation bar icons.
+   */
   const navBarIcon = !isAuthenticated ? (
     <Link className="main-nav-item" to="/login">
-      <i className="fa fa-user-circle"></i> Sign In{' '}
+      <i className="fa fa-user-circle"></i> Sign In
     </Link>
   ) : (
     <React.Fragment>

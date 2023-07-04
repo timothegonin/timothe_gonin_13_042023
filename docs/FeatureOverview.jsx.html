@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: FeatureOverview.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,39 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: FeatureOverview.jsx</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Component for rendering a feature overview item.
+ * @param {Object} props - The component props.
+ * @param {string} props.icon - The URL of the icon for the feature.
+ * @param {string} props.iconAlt - The alt text for the feature icon.
+ * @param {string} props.title - The title of the feature.
+ * @param {string} props.text - The text content of the feature.
+ * @returns {JSX.Element} The rendered feature overview item.
+ */
 
+const FeatureOverview = ({ icon, iconAlt, title, text }) => {
+  return (
+    &lt;div className="feature-item">
+      &lt;img src={icon} alt={iconAlt} className="feature-icon" />
+      &lt;h3 className="feature-item-title">{title}&lt;/h3>
+      &lt;p>{text}&lt;/p>
+    &lt;/div>
+  )
+}
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default FeatureOverview
+</code></pre>
+        </article>
+    </section>
 
 
 

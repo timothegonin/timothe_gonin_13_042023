@@ -2,6 +2,10 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { loginUserAsync } from '../features/user/userSlice'
 
+/**
+ * Component for rendering the sign-in form.
+ * @returns {JSX.Element} The rendered sign-in form component.
+ */
 const SignIn = () => {
   const dispatch = useDispatch()
 

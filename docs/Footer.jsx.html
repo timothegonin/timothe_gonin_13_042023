@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: Footer.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,33 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: Footer.jsx</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Component for rendering the footer.
+ * @returns {JSX.Element} The rendered footer component.
+ */
+const Footer = () => {
+  const actualYear = new Date().getFullYear()
 
+  return (
+    &lt;footer className="footer">
+      &lt;p className="footer-text">Copyright {actualYear} Argent Bank&lt;/p>
+    &lt;/footer>
+  )
+}
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default Footer
+</code></pre>
+        </article>
+    </section>
 
 
 
