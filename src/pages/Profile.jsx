@@ -6,9 +6,17 @@ import { getUserInfosAsync } from '../features/user/userSlice'
 import Account from '../components/Account'
 import UserInfos from '../components/UserInfos'
 
+/**
+ * Profile component representing the user's profile page.
+ * @component
+ * @returns {JSX.Element} The rendered Profile component.
+ */
 const Profile = () => {
   const dispatch = useDispatch()
 
+  /**
+   * Calls the getUserInfosAsync asynchronous action to fetch user information.
+   */
   useEffect(() => {
     dispatch(getUserInfosAsync())
   }, [])

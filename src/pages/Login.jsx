@@ -1,6 +1,11 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import SignIn from '../components/SignIn'
 
+/**
+ * Login page component representing the login page of the application.
+ * @component
+ * @returns {JSX.Element} The rendered Login page component.
+ */
 const Login = () => {
   return (
     <HelmetProvider>

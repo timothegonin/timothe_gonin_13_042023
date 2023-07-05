@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/SignIn.jsx</title>
+    <title>JSDoc: Source: pages/Profile.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/SignIn.jsx</h1>
+    <h1 class="page-title">Source: pages/Profile.jsx</h1>
 
     
 
@@ -26,59 +26,65 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react'
+            <pre class="prettyprint source linenums"><code>import React, { useEffect } from 'react'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { useDispatch } from 'react-redux'
-import { loginUserAsync } from '../features/user/userSlice'
+import { getUserInfosAsync } from '../features/user/userSlice'
+
+import Account from '../components/Account'
+import UserInfos from '../components/UserInfos'
 
 /**
- * Component for rendering the sign-in form.
- * @returns {JSX.Element} The rendered sign-in form component.
+ * Profile component representing the user's profile page.
+ * @component
+ * @returns {JSX.Element} The rendered Profile component.
  */
-const SignIn = () => {
+const Profile = () => {
   const dispatch = useDispatch()
 
-  const [emailEntry, setEmail] = useState('')
-  const [passwordEntry, setPasswordEntry] = useState('')
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(loginUserAsync({ email: emailEntry, password: passwordEntry }))
-  }
+  /**
+   * Calls the getUserInfosAsync asynchronous action to fetch user information.
+   */
+  useEffect(() => {
+    dispatch(getUserInfosAsync())
+  }, [])
 
   return (
-    &lt;form onSubmit={handleSubmit}>
-      &lt;div className="input-wrapper">
-        &lt;label htmlFor="username">Username&lt;/label>
-        &lt;input
-          type="text"
-          id="username"
-          value={emailEntry}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      &lt;/div>
-      &lt;div className="input-wrapper">
-        &lt;label htmlFor="password">Password&lt;/label>
-        &lt;input
-          type="password"
-          id="password"
-          value={passwordEntry}
-          onChange={(e) => setPasswordEntry(e.target.value)}
-          required
-        />
-      &lt;/div>
-      &lt;div className="input-remember">
-        &lt;input type="checkbox" id="remember-me" />
-        &lt;label htmlFor="remember-me">Remember me&lt;/label>
-      &lt;/div>
-      &lt;button className="sign-in-button" type="submit">
-        Sign In
-      &lt;/button>
-    &lt;/form>
+    &lt;HelmetProvider>
+      &lt;Helmet>
+        &lt;title>Argent Bank | Profile&lt;/title>
+      &lt;/Helmet>
+      &lt;main className="main bg-light">
+        &lt;React.Fragment>
+          &lt;div className="header">
+            &lt;h1>Welcome back&lt;/h1>
+            &lt;UserInfos />
+          &lt;/div>
+          &lt;div className="accounts-wrapper">
+            &lt;h2 className="sr-only">Accounts&lt;/h2>
+            &lt;Account
+              title="Argent Bank Checking (x8349)"
+              amount="$2,082.79"
+              amount_description="Available Balance"
+            />
+            &lt;Account
+              title="Argent Bank Savings (x6712)"
+              amount="$10,928.42"
+              amount_description="Available Balance"
+            />
+            &lt;Account
+              title="Argent Bank Credit Card (x8349)"
+              amount="$184.30"
+              amount_description="Current Balance"
+            />
+          &lt;/div>
+        &lt;/React.Fragment>
+      &lt;/main>
+    &lt;/HelmetProvider>
   )
 }
 
-export default SignIn
+export default Profile
 </code></pre>
         </article>
     </section>

@@ -4,6 +4,11 @@ import chatIcon from '../assets/icon-chat.png'
 import moneyIcon from '../assets/icon-money.png'
 import securityIcon from '../assets/icon-security.png'
 
+/**
+ * Home page component representing the home page of the application.
+ * @component
+ * @returns {JSX.Element} The rendered Home page component.
+ */
 const Home = () => {
   return (
     <HelmetProvider>
