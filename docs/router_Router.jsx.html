@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: pages/Error.jsx</title>
+    <title>JSDoc: Source: router/Router.jsx</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: pages/Error.jsx</h1>
+    <h1 class="page-title">Source: router/Router.jsx</h1>
 
     
 
@@ -26,31 +26,41 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import React from 'react'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+            <pre class="prettyprint source linenums"><code>import { Routes, Route, Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import Home from '../pages/Home'
+import Error from '../pages/Error'
+import Profile from '../pages/Profile'
+import Login from '../pages/Login'
 
 /**
- * Error component that represents a page not found error.
- * @component Error
- * @returns {JSX.Element} The rendered Error component.
+ * Router component responsible for handling the application's routing.
+ * @component
+ * @returns {JSX.Element} The rendered Router component.
  */
-
-const Error = () => {
+const Router = () => {
+  const { isAuthenticated } = useSelector((state) => state.user)
   return (
-    &lt;HelmetProvider>
-      &lt;Helmet>
-        &lt;title>Argent Bank | Error&lt;/title>
-      &lt;/Helmet>
-      &lt;main>
-        &lt;h1>Page not found...&lt;/h1>
-        &lt;Link to="/">Back to home page&lt;/Link>
-      &lt;/main>
-    &lt;/HelmetProvider>
+    &lt;Routes>
+      &lt;Route exact path="/" element={&lt;Home />} />
+      &lt;Route
+        path="/login"
+        element={
+          isAuthenticated ? &lt;Navigate to="/profile" replace /> : &lt;Login />
+        }
+      />
+      &lt;Route
+        path="/profile"
+        element={
+          isAuthenticated ? &lt;Profile /> : &lt;Navigate to="/login" replace />
+        }
+      />
+      &lt;Route path="*" element={&lt;Error />} />
+    &lt;/Routes>
   )
 }
 
-export default Error
+export default Router
 </code></pre>
         </article>
     </section>

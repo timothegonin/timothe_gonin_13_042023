@@ -5,6 +5,11 @@ import Error from '../pages/Error'
 import Profile from '../pages/Profile'
 import Login from '../pages/Login'
 
+/**
+ * Router component responsible for handling the application's routing.
+ * @component
+ * @returns {JSX.Element} The rendered Router component.
+ */
 const Router = () => {
   const { isAuthenticated } = useSelector((state) => state.user)
   return (
