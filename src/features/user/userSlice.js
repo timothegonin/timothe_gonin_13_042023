@@ -13,6 +13,7 @@ import axios from 'axios'
 
 const storedIsAuthenticated = sessionStorage.getItem('isAuthenticated')
 const tokenFromStorage = sessionStorage.getItem('isAuthenticatedToken')
+const userFirstNameFromStorage = sessionStorage.getItem('userFirstName')
 
 /**
  * @type {UserState}
@@ -24,7 +25,9 @@ const initialState = {
   isLoading: false,
   error: '',
   userToken: tokenFromStorage ? JSON.parse(tokenFromStorage) : '',
-  userFirstName: '',
+  userFirstName: userFirstNameFromStorage
+    ? JSON.parse(userFirstNameFromStorage)
+    : '',
   userLastName: '',
 }
 
@@ -107,6 +110,7 @@ const userSlice = createSlice({
       state.userToken = ''
       sessionStorage.setItem('isAuthenticated', 'false')
       sessionStorage.removeItem('isAuthenticatedToken')
+      sessionStorage.removeItem('userFirstName')
     },
   },
   extraReducers: (builder) => {
@@ -140,6 +144,10 @@ const userSlice = createSlice({
         state.isLoading = false
         state.userFirstName = action.payload.body.firstName
         state.userLastName = action.payload.body.lastName
+        sessionStorage.setItem(
+          'userFirstName',
+          JSON.stringify(action.payload.body.firstName)
+        )
         state.error = ''
       })
       .addCase(getUserInfosAsync.rejected, (state, action) => {
