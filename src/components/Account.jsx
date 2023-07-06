@@ -1,6 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
+/**
+ * Displaying account information
+ * @function Account
+ * @returns {JSXElement}
+ */
+
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
   │ STYLES                                                                  │

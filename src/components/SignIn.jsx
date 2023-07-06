@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { loginAsync } from './authSlice'
+import { loginUserAsync } from '../features/user/userSlice'
 
-const AuthView = () => {
+/**
+ * Component for rendering the sign-in form.
+ * @returns {JSX.Element} The rendered sign-in form component.
+ */
+const SignIn = () => {
   const dispatch = useDispatch()
 
   const [emailEntry, setEmail] = useState('')
@@ -10,7 +14,7 @@ const AuthView = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(loginAsync({ email: emailEntry, password: passwordEntry }))
+    dispatch(loginUserAsync({ email: emailEntry, password: passwordEntry }))
   }
 
   return (
@@ -46,4 +50,4 @@ const AuthView = () => {
   )
 }
 
-export default AuthView
+export default SignIn

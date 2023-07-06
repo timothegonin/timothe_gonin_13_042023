@@ -1,8 +1,36 @@
-import React, { useEffect, useState } from 'react'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/UserInfos.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/UserInfos.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { setUserInfos } from './userInfosSlice.js'
-import Loader from '../../components/Loader.jsx'
+import { updateUserInfosAsync } from '../features/user/userSlice'
+import Loader from './Loader.jsx'
 
 /* 
   ┌─────────────────────────────────────────────────────────────────────────┐
@@ -24,13 +52,13 @@ const Button = styled.button`
   border: 1.5px solid #5256ec;
   background-color: #5256ec;
   color: #fff;
-  &:hover {
+  &amp;:hover {
     color: #5256ec;
-    &::after {
+    &amp;::after {
       opacity: 1;
     }
   }
-  &::after {
+  &amp;::after {
     content: '';
     position: absolute;
     top: 0;
@@ -43,14 +71,14 @@ const Button = styled.button`
     transition: opacity 250ms;
   }
   ${(props) =>
-    props.$outline &&
+    props.$outline &amp;&amp;
     `margin-top: 0;
     background-color: #fff;
     color: #5256ec; 
-    &:hover {
+    &amp;:hover {
     color: #fff;
     }
-    &::after {
+    &amp;::after {
     background: #5256ec;
     }`}
 `
@@ -71,7 +99,7 @@ const InputWrapper = styled.div`
     border-radius: 2.5px;
     color: #b8c4ce;
     width: 167px;
-    &::placeholder {
+    &amp;::placeholder {
       color: #b8c4ce;
     }
   }
@@ -90,9 +118,13 @@ const ButtonsWrapper = styled.div`
   └─────────────────────────────────────────────────────────────────────────────┘
  */
 
-const UserInfosView = () => {
+/**
+ * Component for rendering user information and allowing editing.
+ * @returns {JSX.Element} The rendered user information component.
+ */
+const UserInfos = () => {
   const { isLoading, userFirstName, userLastName } = useSelector(
-    (state) => state.auth
+    (state) => state.user
   )
 
   const dispatch = useDispatch()
@@ -111,7 +143,12 @@ const UserInfosView = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(setUserInfos(newUserInfos))
+    dispatch(
+      updateUserInfosAsync({
+        firstName: newUserInfos.firstName,
+        lastName: newUserInfos.lastName,
+      })
+    )
     setFormIsOpen(false)
   }
 
@@ -121,26 +158,20 @@ const UserInfosView = () => {
   }
 
   return isLoading ? (
-    <Loader />
+    &lt;Loader />
   ) : (
-    <React.Fragment>
+    &lt;React.Fragment>
       {!formIsOpen ? (
-        <React.Fragment>
-          <h2>{`${
-            newUserInfos.firstName === ''
-              ? userFirstName
-              : newUserInfos.firstName
-          } ${
-            newUserInfos.lastName === '' ? userLastName : newUserInfos.lastName
-          }!`}</h2>
-          <Button className="edit-button" onClick={() => setFormIsOpen(true)}>
+        &lt;React.Fragment>
+          &lt;h2>{`${userFirstName} ${userLastName}!`}&lt;/h2>
+          &lt;Button className="edit-button" onClick={() => setFormIsOpen(true)}>
             Edit Name
-          </Button>
-        </React.Fragment>
+          &lt;/Button>
+        &lt;/React.Fragment>
       ) : (
-        <Form onSubmit={handleSubmit}>
-          <InputWrapper>
-            <input
+        &lt;Form onSubmit={handleSubmit}>
+          &lt;InputWrapper>
+            &lt;input
               type="text"
               placeholder={
                 newUserInfos.firstName.length > 0
@@ -153,7 +184,7 @@ const UserInfosView = () => {
               }
               required
             />
-            <input
+            &lt;input
               type="text"
               placeholder={
                 newUserInfos.lastName > 0 ? newUserInfos.lastName : 'Name'
@@ -164,17 +195,40 @@ const UserInfosView = () => {
               }
               required
             />
-          </InputWrapper>
+          &lt;/InputWrapper>
 
-          <ButtonsWrapper>
-            <Button $outline>Save</Button>
-            <Button onClick={(e) => handleInput(e)} $outline>
+          &lt;ButtonsWrapper>
+            &lt;Button $outline>Save&lt;/Button>
+            &lt;Button onClick={(e) => handleInput(e)} $outline>
               Cancel
-            </Button>
-          </ButtonsWrapper>
-        </Form>
+            &lt;/Button>
+          &lt;/ButtonsWrapper>
+        &lt;/Form>
       )}
-    </React.Fragment>
+    &lt;/React.Fragment>
   )
 }
-export default UserInfosView
+export default UserInfos
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Account">Account</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#FeatureOverview">FeatureOverview</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Loader">Loader</a></li><li><a href="global.html#Login">Login</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Profile">Profile</a></li><li><a href="global.html#Router">Router</a></li><li><a href="global.html#SignIn">SignIn</a></li><li><a href="global.html#UserInfos">UserInfos</a></li><li><a href="global.html#getUserInfosAsync">getUserInfosAsync</a></li><li><a href="global.html#initialState">initialState</a></li><li><a href="global.html#loginUserAsync">loginUserAsync</a></li><li><a href="global.html#updateUserInfosAsync">updateUserInfosAsync</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Jul 05 2023 19:39:07 GMT+0200 (heure d’été d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
