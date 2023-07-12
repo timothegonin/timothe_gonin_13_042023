@@ -1,13 +1,12 @@
+import { Copyright } from 'current-year-copyright-react'
 /**
  * Component for rendering the footer.
  * @returns {JSX.Element} The rendered footer component.
  */
 const Footer = () => {
-  const actualYear = new Date().getFullYear()
-
   return (
     <footer className="footer">
-      <p className="footer-text">Copyright {actualYear} Argent Bank</p>
+      <Copyright nameEntry="Argent Bank" className="footer-text" />
     </footer>
   )
 }
