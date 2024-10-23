@@ -10,10 +10,16 @@
 
 const FeatureOverview = ({ icon, iconAlt, title, text }) => {
   return (
-    <div className="feature-item">
-      <img src={icon} alt={iconAlt} className="feature-icon" />
-      <h3 className="feature-item-title">{title}</h3>
-      <p>{text}</p>
+    <div className="flex flex-col items-center flex-1 p-10">
+      <img
+        src={icon}
+        alt={iconAlt}
+        className="w-36 border-[10px] border-[#00bc77] p-4 rounded-full"
+      />
+      <h3 className="text-[#222] text-xl font-bold mb-2 mt-5 leading-5">
+        {title}
+      </h3>
+      <p className="leading-tight my-3">{text}</p>
     </div>
   )
 }

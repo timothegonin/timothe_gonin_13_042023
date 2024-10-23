@@ -27,7 +27,7 @@ const Home = () => {
             </p>
           </section>
         </div>
-        <section className="features">
+        <section className="flex flex-col min-[920px]:flex-row">
           <h2 className="sr-only">Features</h2>
           <FeatureOverview
             icon={chatIcon}
