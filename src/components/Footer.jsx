@@ -5,8 +5,8 @@ import { Copyright } from 'current-year-copyright-react'
  */
 const Footer = () => {
   return (
-    <footer className="footer">
-      <Copyright nameEntry="Argent Bank" className="footer-text" />
+    <footer className="flex justify-center pt-8 pb-6 px-0 border-t-2 border-[#ccc]">
+      <Copyright nameEntry="Argent Bank" className="m-0 p-0" />
     </footer>
   )
 }
