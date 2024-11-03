@@ -3,6 +3,7 @@ import FeatureOverview from '../components/FeatureOverview'
 import chatIcon from '../assets/icon-chat.png'
 import moneyIcon from '../assets/icon-money.png'
 import securityIcon from '../assets/icon-security.png'
+import Hero from '../components/Hero'
 
 /**
  * Home page component representing the home page of the application.
@@ -16,17 +17,7 @@ const Home = () => {
         <title>Argent Bank | Home</title>
       </Helmet>
       <main>
-        <div className="hero">
-          <section className="hero-content">
-            <h2 className="sr-only">Promoted Content</h2>
-            <p className="subtitle">No fees.</p>
-            <p className="subtitle">No minimum deposit.</p>
-            <p className="subtitle">High interest rates.</p>
-            <p className="text">
-              Open a savings account with Argent Bank today!
-            </p>
-          </section>
-        </div>
+        <Hero />
         <section className="flex flex-col min-[920px]:flex-row">
           <h2 className="sr-only">Features</h2>
           <FeatureOverview
