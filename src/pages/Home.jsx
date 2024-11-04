@@ -1,8 +1,8 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import FeatureOverview from '../components/FeatureOverview'
-import chatIcon from '../assets/icon-chat.png'
-import moneyIcon from '../assets/icon-money.png'
-import securityIcon from '../assets/icon-security.png'
+import chatIcon from '../assets/icons/icon-chat.png'
+import moneyIcon from '../assets/icons/icon-money.png'
+import securityIcon from '../assets/icons/icon-security.png'
 import Hero from '../components/Hero'
 
 /**

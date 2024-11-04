@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../features/user/userSlice'
-import logo from '../assets/argentBankLogo.png'
+import logo from '../assets/logo/argentBankLogo.png'
 import Loader from './Loader'
 
 /**
