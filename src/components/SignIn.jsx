@@ -43,7 +43,7 @@ const SignIn = () => {
         <input type="checkbox" id="remember-me" />
         <label htmlFor="remember-me">Remember me</label>
       </div>
-      <button className="sign-in-button" type="submit">
+      <button className="sign-in-button underline" type="submit">
         Sign In
       </button>
     </form>

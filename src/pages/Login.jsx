@@ -12,8 +12,8 @@ const Login = () => {
       <Helmet>
         <title>Argent Bank | Login</title>
       </Helmet>
-      <main className="main bg-light">
-        <section className="sign-in-content">
+      <main className="bg-[#12002b] flex-1">
+        <section className="bg-white mx-auto w-80 mt-14 p-8 rounded-md">
           <i className="fa fa-user-circle sign-in-icon"></i>
           <h1>Sign In</h1>
           <SignIn />
