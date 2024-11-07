@@ -13,11 +13,9 @@ import Loader from './Loader.jsx'
 const Button = styled.button`
   cursor: pointer;
   width: 101px;
-  height: 35px;
   border-radius: 2.5px;
   font-weight: bold;
   font-size: 12px;
-  padding: 10px;
   margin-top: 1.2rem;
   position: relative;
   z-index: 1;
@@ -64,9 +62,9 @@ const InputWrapper = styled.div`
   justify-content: center;
   column-gap: 13px;
   input {
-    padding: 10px;
+    padding-left: 10px;
     font-size: 1.2rem;
-    font-size: 12px;
+    font-size: 14px;
     border: 1.5px solid #b8c4ce;
     border-radius: 2.5px;
     color: #b8c4ce;
@@ -136,7 +134,7 @@ const UserInfos = () => {
       {!formIsOpen ? (
         <React.Fragment>
           <h2 className="font-bold">{`${userFirstName} ${userLastName}!`}</h2>
-          <Button className="edit-button" onClick={() => setFormIsOpen(true)}>
+          <Button className="" onClick={() => setFormIsOpen(true)}>
             Edit Name
           </Button>
         </React.Fragment>
