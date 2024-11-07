@@ -68,7 +68,6 @@ const InputWrapper = styled.div`
     border: 1.5px solid #b8c4ce;
     border-radius: 2.5px;
     color: #b8c4ce;
-    width: 167px;
     &::placeholder {
       color: #b8c4ce;
     }
@@ -139,10 +138,11 @@ const UserInfos = () => {
           </Button>
         </React.Fragment>
       ) : (
-        <Form onSubmit={handleSubmit}>
-          <InputWrapper>
+        <Form onSubmit={handleSubmit} className="mx-10">
+          <InputWrapper className="flex-col items-center gap-3 mb-4 min-[450px]:mb-2 min-[450px]:flex-row w-full">
             <input
               type="text"
+              className="w-10/12 min-[450px]:w-[167px]"
               placeholder={
                 newUserInfos.firstName.length > 0
                   ? newUserInfos.firstName
@@ -156,6 +156,7 @@ const UserInfos = () => {
             />
             <input
               type="text"
+              className="w-10/12 min-[450px]:w-[167px]"
               placeholder={
                 newUserInfos.lastName > 0 ? newUserInfos.lastName : 'Name'
               }
