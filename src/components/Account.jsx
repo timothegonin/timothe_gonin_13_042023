@@ -18,7 +18,7 @@ const TransactionButton = styled.button`
   position: relative;
   z-index: 1;
   &:hover {
-    color: #6458f5;
+    color: #00bc77;
     &::after {
       opacity: 1;
     }

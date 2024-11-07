@@ -26,10 +26,10 @@ const Profile = () => {
       <Helmet>
         <title>Argent Bank | Profile</title>
       </Helmet>
-      <main className="main bg-light">
+      <main className="bg-[#12002b] flex-1">
         <React.Fragment>
-          <div className="header">
-            <h1>Welcome back</h1>
+          <div className="header text-white text-3xl">
+            <h1 className="font-bold">Welcome back</h1>
             <UserInfos />
           </div>
           <div className="accounts-wrapper">

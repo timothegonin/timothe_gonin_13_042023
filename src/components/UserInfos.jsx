@@ -21,11 +21,11 @@ const Button = styled.button`
   margin-top: 1.2rem;
   position: relative;
   z-index: 1;
-  border: 1.5px solid #5256ec;
-  background-color: #5256ec;
+  border: 1.5px solid #00bc77;
+  background-color: #00bc77;
   color: #fff;
   &:hover {
-    color: #5256ec;
+    color: #00bc77;
     &::after {
       opacity: 1;
     }
@@ -46,12 +46,12 @@ const Button = styled.button`
     props.$outline &&
     `margin-top: 0;
     background-color: #fff;
-    color: #5256ec; 
+    color: #00bc77; 
     &:hover {
     color: #fff;
     }
     &::after {
-    background: #5256ec;
+    background: #00bc77;
     }`}
 `
 
@@ -135,7 +135,7 @@ const UserInfos = () => {
     <React.Fragment>
       {!formIsOpen ? (
         <React.Fragment>
-          <h2>{`${userFirstName} ${userLastName}!`}</h2>
+          <h2 className="font-bold">{`${userFirstName} ${userLastName}!`}</h2>
           <Button className="edit-button" onClick={() => setFormIsOpen(true)}>
             Edit Name
           </Button>
