@@ -13,13 +13,13 @@ import Loader from './Loader.jsx'
 const Button = styled.button`
   cursor: pointer;
   width: 101px;
-  border-radius: 2.5px;
+  border-radius: 5px;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 0.95rem;
   margin-top: 1.2rem;
   position: relative;
   z-index: 1;
-  border: 1.5px solid #00bc77;
+  border: 3px solid #00bc77;
   background-color: #00bc77;
   color: #fff;
   &:hover {
@@ -66,7 +66,7 @@ const InputWrapper = styled.div`
     font-size: 1.2rem;
     font-size: 14px;
     border: 1.5px solid #b8c4ce;
-    border-radius: 2.5px;
+    border-radius: 5px;
     color: #b8c4ce;
     &::placeholder {
       color: #b8c4ce;
@@ -168,7 +168,7 @@ const UserInfos = () => {
             />
           </InputWrapper>
 
-          <ButtonsWrapper>
+          <ButtonsWrapper style={{ boxSizing: 'border-box' }}>
             <Button $outline>Save</Button>
             <Button onClick={(e) => handleInput(e)} $outline>
               Cancel
