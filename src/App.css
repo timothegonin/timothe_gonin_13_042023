@@ -237,6 +237,7 @@
   justify-content: space-between;
   align-items: center;
   border: 3px solid #c3cfd9;
+  border-radius: 5px;
   background-color: #fff;
   width: 80%;
   margin: 0 auto;
@@ -244,6 +245,7 @@
   padding: 1.5rem;
   box-sizing: border-box;
   text-align: left;
+  line-height: normal;
 }
 
 .account-amount {
@@ -286,11 +288,11 @@
   border-radius: 5px;
   display: block;
   width: 100%;
-  padding: 8px;
+  padding: 6px;
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border: 1px solid #00bc77;
+  border: 3px solid #00bc77;
   background-color: #00bc77;
   color: #fff;
 }
