@@ -26,13 +26,13 @@ const Profile = () => {
       <Helmet>
         <title>Argent Bank | Profile</title>
       </Helmet>
-      <main className="main bg-light">
+      <main className="bg-[#12002b] flex-1">
         <React.Fragment>
-          <div className="header">
-            <h1>Welcome back</h1>
+          <div className="py-8 px-0 text-white text-[2rem] leading-9">
+            <h1 className="font-bold">Welcome back</h1>
             <UserInfos />
           </div>
-          <div className="accounts-wrapper">
+          <div className="flex flex-col gap-8 pb-3">
             <h2 className="sr-only">Accounts</h2>
             <Account
               title="Argent Bank Checking (x8349)"
