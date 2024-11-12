@@ -44,7 +44,7 @@ const Navbar = () => {
         }
         to="/profile"
       >
-        <i className="fa fa-user-circle  ml-3 mr-1.5"></i>
+        <i className="fa fa-user-circle m-0.5 min-[470px]:ml-3 min-[470px]:mr-1.5"></i>
         <span className="hidden min-[470px]:inline">
           {isLoading ? <Loader type="bounce" /> : userFirstName}
         </span>
@@ -56,7 +56,7 @@ const Navbar = () => {
         to="/"
         onClick={handleLogout}
       >
-        <i className="fa fa-sign-out  ml-3 mr-1.5"></i>
+        <i className="fa fa-sign-out m-0.5 min-[470px]:ml-3 min-[470px]:mr-1.5"></i>
         <span className="hidden min-[470px]:inline">Sign Out</span>
       </NavLink>
     </React.Fragment>
@@ -65,7 +65,11 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between items-center px-5 py-1.5">
       <Link className="flex items-center" to="/">
-        <img className="max-w-full w-52" src={logo} alt="Argent Bank Logo" />
+        <img
+          className="max-w-full w-40 min-[470px]:w-[200px] "
+          src={logo}
+          alt="Argent Bank Logo"
+        />
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>{navBarIcon}</div>
