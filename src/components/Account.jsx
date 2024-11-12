@@ -18,7 +18,7 @@ const TransactionButton = styled.button`
   position: relative;
   z-index: 1;
   &:hover {
-    color: #6458f5;
+    color: #00bc77;
     &::after {
       opacity: 1;
     }
@@ -44,14 +44,14 @@ const TransactionButton = styled.button`
  */
 const Account = ({ title, amount, amount_description }) => {
   return (
-    <section className="account">
-      <div className="account-content-wrapper">
-        <h3 className="account-title">{title}</h3>
-        <p className="account-amount">{amount}</p>
-        <p className="account-amount-description">{amount_description}</p>
+    <section className="flex flex-col justify-between items-center mx-auto my-0 mb-8 p-5 text-left bg-white leading-8 w-4/5 rounded-[5px] min-[720px]:flex-row">
+      <div className="w-full flex-1">
+        <h3 className="m-0 p-0 text-[1rem]">{title}</h3>
+        <p className="m-0 text-[2.5rem] font-bold">{amount}</p>
+        <p className="m-0">{amount_description}</p>
       </div>
-      <div className="account-content-wrapper cta">
-        <TransactionButton className="transaction-button">
+      <div className="w-full flex-1 min-[720px]:grow-0">
+        <TransactionButton className="rounded-[5px] block w-full p-[6px] text-[1.1rem] font-bold mt-1rem border-[3px] border-[#00bc77] bg-[#00bc77] text-white shadow-slate-300 shadow-md min-[720px]:w-48">
           View transactions
         </TransactionButton>
       </div>

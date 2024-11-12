@@ -19,9 +19,12 @@ const SignIn = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="input-wrapper">
-        <label htmlFor="username">Username</label>
+      <div className="flex flex-col text-left mb-4">
+        <label htmlFor="username" className="font-bold">
+          Username
+        </label>
         <input
+          className="p-[5px] text-xl rounded-[5px] border-[1.5px] border-[#b8c4ce]"
           type="text"
           id="username"
           value={emailEntry}
@@ -29,9 +32,12 @@ const SignIn = () => {
           required
         />
       </div>
-      <div className="input-wrapper">
-        <label htmlFor="password">Password</label>
+      <div className="flex flex-col text-left mb-4">
+        <label htmlFor="password" className="font-bold">
+          Password
+        </label>
         <input
+          className="p-[5px] text-xl rounded-[5px] border-[1.5px] border-[#b8c4ce]"
           type="password"
           id="password"
           value={passwordEntry}
@@ -39,11 +45,16 @@ const SignIn = () => {
           required
         />
       </div>
-      <div className="input-remember">
-        <input type="checkbox" id="remember-me" />
-        <label htmlFor="remember-me">Remember me</label>
+      <div className="flex">
+        <input className="cursor-pointer" type="checkbox" id="remember-me" />
+        <label htmlFor="remember-me" className="ms-1">
+          Remember me
+        </label>
       </div>
-      <button className="sign-in-button" type="submit">
+      <button
+        className="block w-full p-2 rounded-[5px] text-lg font-bold mt-4 text-white border-0 bg-[#00bc77] cursor-pointer underline"
+        type="submit"
+      >
         Sign In
       </button>
     </form>

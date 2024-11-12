@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../features/user/userSlice'
-import logo from '../assets/argentBankLogo.png'
+import logo from '../assets/logo/argentBankLogo.png'
 import Loader from './Loader'
 
 /**
@@ -23,28 +23,50 @@ const Navbar = () => {
    * Renders the appropriate navigation bar icons based on the user's authentication status.
    * @returns {JSX.Element} The rendered navigation bar icons.
    */
+  const linkStyle = 'font-bold text-[#2c3e50] no-underline mr-4 hover:underline'
+  const linkStyleActive = 'text-[#42b983]'
+
   const navBarIcon = !isAuthenticated ? (
-    <Link className="main-nav-item" to="/login">
-      <i className="fa fa-user-circle"></i> Sign In
-    </Link>
+    <NavLink
+      className={({ isActive }) =>
+        isActive ? `${linkStyle} ${linkStyleActive}` : linkStyle
+      }
+      to="/login"
+    >
+      <i className="fa fa-user-circle ml-3 mr-1.5"></i>
+      <span className="hidden min-[470px]:inline">Sign In</span>
+    </NavLink>
   ) : (
     <React.Fragment>
-      <Link className="main-nav-item" to="/profile">
-        <i className="fa fa-user-circle"></i>
-        {isLoading ? <Loader type="bounce" /> : userFirstName}
-      </Link>
-      <Link className="main-nav-item" to="/" onClick={handleLogout}>
-        <i className="fa fa-sign-out"></i>
-        Sign Out
-      </Link>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? `${linkStyle} ${linkStyleActive}` : linkStyle
+        }
+        to="/profile"
+      >
+        <i className="fa fa-user-circle m-0.5 min-[470px]:ml-3 min-[470px]:mr-1.5"></i>
+        <span className="hidden min-[470px]:inline">
+          {isLoading ? <Loader type="bounce" /> : userFirstName}
+        </span>
+      </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? `${linkStyle} ${linkStyleActive}` : linkStyle
+        }
+        to="/"
+        onClick={handleLogout}
+      >
+        <i className="fa fa-sign-out m-0.5 min-[470px]:ml-3 min-[470px]:mr-1.5"></i>
+        <span className="hidden min-[470px]:inline">Sign Out</span>
+      </NavLink>
     </React.Fragment>
   )
 
   return (
-    <nav className="main-nav">
-      <Link className="main-nav-logo" to="/">
+    <nav className="flex justify-between items-center px-5 py-1.5">
+      <Link className="flex items-center" to="/">
         <img
-          className="main-nav-logo-image"
+          className="max-w-full w-40 min-[470px]:w-[200px] "
           src={logo}
           alt="Argent Bank Logo"
         />
