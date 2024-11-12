@@ -33,7 +33,8 @@ const Navbar = () => {
       }
       to="/login"
     >
-      <i className="fa fa-user-circle ml-3 mr-1.5"></i> Sign In
+      <i className="fa fa-user-circle ml-3 mr-1.5"></i>
+      <span className="hidden min-[470px]:inline">Sign In</span>
     </NavLink>
   ) : (
     <React.Fragment>
@@ -44,7 +45,9 @@ const Navbar = () => {
         to="/profile"
       >
         <i className="fa fa-user-circle  ml-3 mr-1.5"></i>
-        {isLoading ? <Loader type="bounce" /> : userFirstName}
+        <span className="hidden min-[470px]:inline">
+          {isLoading ? <Loader type="bounce" /> : userFirstName}
+        </span>
       </NavLink>
       <NavLink
         className={({ isActive }) =>
@@ -54,7 +57,7 @@ const Navbar = () => {
         onClick={handleLogout}
       >
         <i className="fa fa-sign-out  ml-3 mr-1.5"></i>
-        Sign Out
+        <span className="hidden min-[470px]:inline">Sign Out</span>
       </NavLink>
     </React.Fragment>
   )

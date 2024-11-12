@@ -44,7 +44,7 @@ const TransactionButton = styled.button`
  */
 const Account = ({ title, amount, amount_description }) => {
   return (
-    <section className="flex flex-col justify-between items-center mx-auto my-0 p-5 text-left bg-white leading-8 w-4/5 rounded-[5px] min-[720px]:flex-row">
+    <section className="flex flex-col justify-between items-center mx-auto my-0 mb-8 p-5 text-left bg-white leading-8 w-4/5 rounded-[5px] min-[720px]:flex-row">
       <div className="w-full flex-1">
         <h3 className="m-0 p-0 text-[1rem]">{title}</h3>
         <p className="m-0 text-[2.5rem] font-bold">{amount}</p>
