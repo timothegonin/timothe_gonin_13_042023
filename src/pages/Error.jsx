@@ -14,9 +14,11 @@ const Error = () => {
       <Helmet>
         <title>Argent Bank | Error</title>
       </Helmet>
-      <main>
+      <main className="flex-1 flex flex-col mt-14">
         <h1>Page not found...</h1>
-        <Link to="/">Back to home page</Link>
+        <Link to="/" className="font-bold underline">
+          Back to home page
+        </Link>
       </main>
     </HelmetProvider>
   )
