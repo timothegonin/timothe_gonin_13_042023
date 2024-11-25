@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: Bank Argent API documentation
+  description: Contains all available API endpoints in this codebase
+  termsOfService: http://swagger.io/terms/
+  version: 1.0.0
+servers:
+  - url: http://localhost:3001/api/v1
+paths:
+  /user/account/{accountID}:
+    get:
+      tags:
+        - Transactions Module
+      summary: User Transactions API
+      description: Fetch all transactions made by the user for the current month
+      parameters:
+        - name: Authorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+        - name: accountID
+          in: path
+          description: ID of the account
+          required: true
+          schema:
+            type: string
+        - name: currentDate
+          in: query
+          description: The current year and month
+          required: true
+          schema: {}
+      responses:
+        200:
+          description: User account retrieved successfully
+        400:
+          description: Invalid Fields
+          content: {}
+        500:
+          description: Internal Server Error
+          content: {}
+  /user/account/{accountID}/{transactionID}:
+    get:
+      tags:
+        - Transactions Module
+      summary: User Transactions API
+      description: Fetch details of a specific transaction in another view
+      parameters:
+        - name: Authorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+        - name: accountID
+          in: path
+          description: ID of the account
+          required: true
+          schema:
+            type: string
+        - name: transactionID
+          in: path
+          description: ID of the transaction
+          required: true
+          schema:
+            type: string
+        - name: currentDate
+          in: query
+          description: The current year and month
+          required: true
+          schema: {}
+      responses:
+        200:
+          description: User transaction retrieved successfully
+        400:
+          description: Invalid Fields
+          content: {}
+        500:
+          description: Internal Server Error
+          content: {}
+    put:
+      tags:
+        - Transactions Module
+      summary: User Transactions API
+      description: Updates the information of an existing transaction, from a specific account
+      parameters:
+        - name: Authorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+        - name: accountID
+          in: path
+          description: ID of the account
+          required: true
+          schema:
+            type: string
+        - name: transactionID
+          in: path
+          description: ID of the transaction
+          required: true
+          schema:
+            type: string
+        - name: currentDate
+          in: query
+          description: The current year and month
+          required: true
+          schema: {}
+      responses:
+        200:
+          description: User transaction updated successfully
+        400:
+          description: Invalid Fields
+          content: {}
+        500:
+          description: Internal Server Error
+          content: {}
+      x-codegen-request-body-name: body
+components:
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      name: Authorization
+      in: header
