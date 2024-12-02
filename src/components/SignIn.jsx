@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginUserAsync } from '../features/user/userSlice'
 
 /**
@@ -8,6 +8,7 @@ import { loginUserAsync } from '../features/user/userSlice'
  */
 const SignIn = () => {
   const dispatch = useDispatch()
+  const { error } = useSelector((state) => state.user)
 
   const [emailEntry, setEmail] = useState('')
   const [passwordEntry, setPasswordEntry] = useState('')
@@ -57,6 +58,7 @@ const SignIn = () => {
       >
         Sign In
       </button>
+      {error && <p className="text-red-500 mt-2">{`${error}`}</p>}
     </form>
   )
 }
