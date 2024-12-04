@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { loginUserAsync } from '../features/user/userSlice'
 import Loader from './Loader'
 
@@ -9,7 +10,10 @@ import Loader from './Loader'
  */
 const SignIn = () => {
   const dispatch = useDispatch()
-  const { isLoading, error } = useSelector((state) => state.user)
+  const navigate = useNavigate()
+  const { isLoading, isAuthenticated, error } = useSelector(
+    (state) => state.user
+  )
 
   const [emailEntry, setEmail] = useState('')
   const [passwordEntry, setPasswordEntry] = useState('')
@@ -18,6 +22,13 @@ const SignIn = () => {
     e.preventDefault()
     dispatch(loginUserAsync({ email: emailEntry, password: passwordEntry }))
   }
+
+  useEffect(() => {
+    document.title.includes('Login')
+    if (isAuthenticated) {
+      navigate('/profile')
+    }
+  }, [navigate, isAuthenticated])
 
   return (
     <form onSubmit={handleSubmit}>
