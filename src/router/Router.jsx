@@ -1,9 +1,9 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Routes, Route } from 'react-router-dom'
 import Home from '../pages/Home'
 import Error from '../pages/Error'
 import Profile from '../pages/Profile'
 import Login from '../pages/Login'
+import ProtectedRoutes from '../utils/ProtectedRoutes'
 
 /**
  * Router component responsible for handling the application's routing.
@@ -11,22 +11,13 @@ import Login from '../pages/Login'
  * @returns {JSX.Element} The rendered Router component.
  */
 const Router = () => {
-  const { isAuthenticated } = useSelector((state) => state.user)
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
-      <Route
-        path="/login"
-        element={
-          isAuthenticated ? <Navigate to="/profile" replace /> : <Login />
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-          isAuthenticated ? <Profile /> : <Navigate to="/login" replace />
-        }
-      />
+      <Route path="/login" element={<Login />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/profile" element={<Profile />} />
+      </Route>
       <Route path="*" element={<Error />} />
     </Routes>
   )

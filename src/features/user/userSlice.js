@@ -152,6 +152,8 @@ const userSlice = createSlice({
       })
       .addCase(getUserInfosAsync.rejected, (state, action) => {
         state.isLoading = false
+        state.isAuthenticated = false
+        state.userToken = ''
         state.userFirstName = ''
         state.userLastName = ''
         state.error = action.error.message
