@@ -1,6 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-// import { Routes, Route, Navigate } from 'react-router-dom'
-// import { useSelector } from 'react-redux'
 import Home from '../pages/Home'
 import Error from '../pages/Error'
 import Profile from '../pages/Profile'
@@ -13,16 +11,9 @@ import ProtectedRoutes from '../utils/ProtectedRoutes'
  * @returns {JSX.Element} The rendered Router component.
  */
 const Router = () => {
-  // const { isAuthenticated } = useSelector((state) => state.user)
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
-      {/* <Route
-        path="/login"
-        element={
-          isAuthenticated ? <Navigate to="/profile" replace /> : <Login />
-        }
-      /> */}
       <Route path="/login" element={<Login />} />
       <Route element={<ProtectedRoutes />}>
         <Route path="/profile" element={<Profile />} />
